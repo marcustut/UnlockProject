@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field',
     'submit.apps.SubmitConfig',
     'home.apps.HomeConfig',
     'login.apps.LoginConfig',

@@ -14,7 +14,9 @@ class MissionSchedule(models.Model):
 class RulesAndRegulations(models.Model):
     pass
 
-class EmergencyContact(models.Model, Importable):
-    message = models.TextField()
+class EmergencyContact(models.Model):
     name = models.CharField(max_length=200)
-    phone = PhoneNumberField(null=False, blank=False, unique=True)
+    phone_number = PhoneNumberField(null=False, blank=False, unique=True)
+
+    def __str__(self):
+        return self.name

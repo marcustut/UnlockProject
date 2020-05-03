@@ -14,6 +14,9 @@ import datetime
 # Credentials
 from .credentials.twilio_cred import account_sid, auth_token
 
+# Models
+from .models import EmergencyContact
+
 # Global Variables
 client = Client(account_sid, auth_token)
 
@@ -52,6 +55,11 @@ class InfoBoard(View):
 
         # Emergency Contact
         if incoming_msg == '5' or incoming_msg == '📞':
-            msg.body(f'This feature is under development.')
+            msg_template = f'*Emergency Contact 📞*\n_Contact only if there is any enquiries on games or rules and regulations._\n\n'
+            for contact in EmergencyContact.objects.all():
+                contact_msg = f'{contact.name} {contact.phone_number}\n'
+                msg_template += contact_msg
+            
+            msg.body(msg_template)
 
         return HttpResponse(str(resp))
