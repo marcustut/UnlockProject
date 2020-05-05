@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unlock Project 2020</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <!--Bootstrap 4.4-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <style>
+      /* .navbar-header {
+                float: left;
+                text-align: center;
+                width: 100%;
+            } */
+
+      body {
+        background: #000000 url("{% static 'images/unlockBG.jpg' %}");
+      }
+
+      footer {
+        background-color: #343a40;
+        color: white;
+      }
+
+      footer > * {
+        margin: 3px;
+        height: auto;
+      }
+
+      .progress {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+      }
+
+      .progress-bar {
+        background-color: #343a40;
+      }
+
+      .container {
+        color: white;
+      }
+
+      .jumbotron {
+        background-color: #343a40;
+        border-radius: 1vw;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between"
+    >
+      <a class="navbar-brand" href="http://fgacyc.com/church/" target="_blank">
+        <img
+          src="{% static 'images/CYCLogo.png' %}"
+          width="58"
+          height="25"
+          style="margin-top: -5px;"
+          alt=""
+        />
+      </a>
+
+      <a
+        class="navbar-brand"
+        href="https://www.instagram.com/fgacycyw/"
+        target="_blank"
+      >
+        <img
+          src="{% static 'images/TitleLogo.png' %}"
+          width="100"
+          height="25"
+          style="margin-top: -5px;"
+          alt=""
+        />
+      </a>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="location.href='{% url 'login:logout' %}'"
+      >
+        Logout
+      </button>
+    </nav>
+
+    <div class="container">
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          style="width: 10%;"
+        ></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="jumbotron" style="text-align: center;">
+            <h2 class=""><strong>Day 1</strong></h2>
+            <p class="lead">Find something to do, this is just a test text</p>
+            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="jumbotron" style="text-align: center;">
+            <h2 class=""><strong>Day 2</strong></h2>
+            <p class="lead">Find something to do, this is just a test text</p>
+            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="jumbotron" style="text-align: center;">
+            <h2 class=""><strong>Day 3</strong></h2>
+            <p class="lead">Find something to do, this is just a test text</p>
+            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="jumbotron" style="text-align: center;">
+            <h2 class=""><strong>Day 4</strong></h2>
+            <p class="lead">Find something to do, this is just a test text</p>
+            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="jumbotron" style="text-align: center;">
+            <h2 class=""><strong>Day 5</strong></h2>
+            <p class="lead">Find something to do, this is just a test text</p>
+            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="jumbotron" style="text-align: center;">
+            <h2 class=""><strong>Day 6</strong></h2>
+            <p class="lead">Find something to do, this is just a test text</p>
+            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid text-center fixed-bottom">
+      <p>Contact Admin if there's any issues</p>
+    </footer>
+  </body>
+</html>

@@ -15,14 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from home import views as homeviews
 from infoboard.views import InfoBoard
-from login.views import login
 
 urlpatterns = [
-    path('', homeviews.homepage),
+    path('', include('home.urls')),
 	path('submit/', include('submit.urls')),
     path('admin/', admin.site.urls),
-    path('login/', login, name='login'),
+    path('login/', include('login.urls')),
     path('infoboard/', InfoBoard.as_view()),
 ]
