@@ -46,7 +46,7 @@ class InfoBoard(View):
         if incoming_msg == '2' or incoming_msg == '🗒️':
             msg_MissionDetail = f'*Mission Details 🗒️*\n\n'
             idx = 1
-            for mission in MissionDetail.objects.all():
+            for mission in MissionDetail.objects.all().order_by('start_time'):
                 mission_detail_msg = f'*{idx}. {mission.mission_title}*\n_{mission.mission_description}_\nStart Time: {timezone.localtime(mission.start_time).strftime("_%a, %d-%m-%Y, %I:%M:%S%p_")}\nEnd Time: {timezone.localtime(mission.end_time).strftime("_%a, %d-%m-%Y, %I:%M:%S%p_")}\n\n'
                 msg_MissionDetail += mission_detail_msg
                 idx += 1

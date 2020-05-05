@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Unlock Project 2020</title>
+    <title>绝密追查 - Mission Page</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load static %}
+    <!--Website Logo-->
+    <link rel="icon" type="image/png" href="{% static 'images/Logo.png' %}" />
     <!--Bootstrap 4.4-->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script>
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('datetime').innerHTML =
+      h + ":" + m + ":" + s;
+      var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
+    </script>
     <style>
-      /* .navbar-header {
-                float: left;
-                text-align: center;
-                width: 100%;
-            } */
-
       body {
         background: #000000 url("{% static 'images/unlockBG.jpg' %}");
       }
@@ -42,13 +55,26 @@
         color: white;
       }
 
-      .jumbotron {
+      .locked-mission {
+        background-color: #52575c;
+        border-radius: 1vw;
+        background-image: url("{% static 'images/Lock.png' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100px 100px;
+      }
+
+      .locked-mission > * {
+        visibility: hidden;
+      }
+
+      .active-mission {
         background-color: #343a40;
         border-radius: 1vw;
       }
     </style>
   </head>
-  <body>
+  <body onload=startTime()>
     <nav
       class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between"
     >
@@ -93,56 +119,57 @@
         ></div>
       </div>
 
-      <div class="row">
-        <div class="col-sm">
-          <div class="jumbotron" style="text-align: center;">
-            <h2 class=""><strong>Day 1</strong></h2>
-            <p class="lead">Find something to do, this is just a test text</p>
-            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+        <div class="row">
+        {% for mission in missions|slice:":3" %}
+          <div class="col-sm">
+            {% if now > mission.start_time.date %}
+              <div class="jumbotron active-mission" style="text-align: center;">
+            {% else %}
+              <div class="jumbotron locked-mission" style="text-align: center;">
+            {% endif %}
+                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
+                <p class="lead">{{ mission.mission_description }}</p>
+                <a class="btn btn-secondary" href="#" role="button">Submit</a>
+              </div>
           </div>
+        {% endfor %}
         </div>
-        <div class="col-sm">
-          <div class="jumbotron" style="text-align: center;">
-            <h2 class=""><strong>Day 2</strong></h2>
-            <p class="lead">Find something to do, this is just a test text</p>
-            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+
+        <div class="row">
+        {% for mission in missions|slice:"3:6" %}
+          <div class="col-sm">
+            {% if now > mission.start_time.date %}
+              <div class="jumbotron active-mission" style="text-align: center;">
+            {% else %}
+              <div class="jumbotron locked-mission" style="text-align: center;">
+            {% endif %}
+                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
+                <p class="lead">{{ mission.mission_description }}</p>
+                <a class="btn btn-secondary" href="#" role="button">Submit</a>
+              </div>
           </div>
+        {% endfor %}
         </div>
-        <div class="col-sm">
-          <div class="jumbotron" style="text-align: center;">
-            <h2 class=""><strong>Day 3</strong></h2>
-            <p class="lead">Find something to do, this is just a test text</p>
-            <a class="btn btn-secondary" href="#" role="button">Submit</a>
+
+        <div class="row">
+        {% for mission in missions|slice:"6:9" %}
+          <div class="col-sm">
+            {% if now > mission.start_time.date %}
+              <div class="jumbotron active-mission" style="text-align: center;">
+            {% else %}
+              <div class="jumbotron locked-mission" style="text-align: center;">
+            {% endif %}
+                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
+                <p class="lead">{{ mission.mission_description }}</p>
+                <a class="btn btn-secondary" href="#" role="button">Submit</a>
+              </div>
           </div>
+        {% endfor %}
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <div class="jumbotron" style="text-align: center;">
-            <h2 class=""><strong>Day 4</strong></h2>
-            <p class="lead">Find something to do, this is just a test text</p>
-            <a class="btn btn-secondary" href="#" role="button">Submit</a>
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="jumbotron" style="text-align: center;">
-            <h2 class=""><strong>Day 5</strong></h2>
-            <p class="lead">Find something to do, this is just a test text</p>
-            <a class="btn btn-secondary" href="#" role="button">Submit</a>
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="jumbotron" style="text-align: center;">
-            <h2 class=""><strong>Day 6</strong></h2>
-            <p class="lead">Find something to do, this is just a test text</p>
-            <a class="btn btn-secondary" href="#" role="button">Submit</a>
-          </div>
-        </div>
-      </div>
     </div>
 
     <footer class="container-fluid text-center fixed-bottom">
-      <p>Contact Admin if there's any issues</p>
+      <p>Contact Admin if there's any issues (Current Time: <span id="datetime"></span>)</p>
     </footer>
   </body>
 </html>
