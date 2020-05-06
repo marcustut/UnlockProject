@@ -14,7 +14,7 @@ config = {
     'messagingSenderId': "826459049639",
     'appId': "1:826459049639:web:e56e964ae0a291d4029582",
     'measurementId': "G-3PL9VWKPM1"
-};
+}
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
@@ -42,15 +42,18 @@ def postsign(request):
 
 def logout(request):
     django_auth.logout(request)
-    return render(request, 'login/login.html')
+    request.session['error'] = "You're logged out."
+    # return render(request, 'login/login.html', {"message": "You're logged out."})
+    return HttpResponseRedirect(reverse('login:login'))
 
 def register(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
 
     try:
-        auth.create_user_with_email_and_password(email, password)
+        user = auth.create_user_with_email_and_password(email, password)
         message = "Your account has been successfully registered."
+        user['idToken']
     except:
         message = "There's an issue creating your account."
         return render(request, "login/login.html", {"message": message})
