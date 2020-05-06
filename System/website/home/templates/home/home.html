@@ -151,7 +151,7 @@
         {% endfor %}
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
         {% for mission in missions|slice:"6:9" %}
           <div class="col-sm">
             {% if now > mission.start_time.date %}
@@ -168,8 +168,10 @@
         </div>
     </div>
 
+    <script src='https://poll.app.do/iframe/testing-poll-2867017.js'></script>
+
     <footer class="container-fluid text-center fixed-bottom">
-      <p>Contact Admin if there's any issues (Current Time: <span id="datetime"></span>)</p>
+      <p>Malaysia Time: <span id="datetime"></span></p>
     </footer>
   </body>
 </html>

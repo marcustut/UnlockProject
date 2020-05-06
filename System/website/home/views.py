@@ -13,7 +13,7 @@ def redirectToLogin(request):
 
 
 def home(request):
-    now = datetime.datetime.now().date() 
+    now = datetime.datetime(2020, 5, 29).date()
     missions = MissionDetail.objects.all().order_by('start_time')
 
     return render(request, 'home/home.html', {'now': now, 'missions': missions})

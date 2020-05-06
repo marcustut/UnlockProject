@@ -8,7 +8,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>绝密追查 - Inspector Login</title>
+    <title>绝密追查 - Inspector Registration</title>
     {% load static %}
     <link rel="icon" type="image/png" href="{% static 'images/Logo.png' %}" />
     <link rel="stylesheet" href="{% static 'images/login.css' %}" />
@@ -29,8 +29,7 @@
           <label for="password">Password:</label><br />
           <input type="password" name="password" style="text-align: center;"/><br /><br />
         </div>
-        <input class="login-button" type="submit" value="Log In" />
-        <input class="register-button" type="submit" formaction="{% url 'login:register' %}" value="Register" />
+        <input class="login-button" type="submit" value="Register" />
       </form>
     </div>
   </body>

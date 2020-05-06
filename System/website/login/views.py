@@ -6,15 +6,15 @@ import pyrebase
 
 # Firebase Config
 config = {
-    "apiKey": "AIzaSyB6L2YFRF0_MBQ015peiSG_9WaUXMKToDk",
-    "authDomain": "quickstart-1588101344876.firebaseapp.com",
-    "databaseURL": "https://quickstart-1588101344876.firebaseio.com",
-    "projectId": "quickstart-1588101344876",
-    "storageBucket": "quickstart-1588101344876.appspot.com",
-    "messagingSenderId": "788784957362",
-    "appId": "1:788784957362:web:6d49b59fc2716acf0d06ab",
-    "measurementId": "G-KDPE0NY6Z4",
-}
+    'apiKey': "AIzaSyAXYyxxAUC3twzfRBMMd5WLlqVxSc_J17M",
+    'authDomain': "unlock2020.firebaseapp.com",
+    'databaseURL': "https://unlock2020.firebaseio.com",
+    'projectId': "unlock2020",
+    'storageBucket': "unlock2020.appspot.com",
+    'messagingSenderId': "826459049639",
+    'appId': "1:826459049639:web:e56e964ae0a291d4029582",
+    'measurementId': "G-3PL9VWKPM1"
+};
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
@@ -43,3 +43,16 @@ def postsign(request):
 def logout(request):
     django_auth.logout(request)
     return render(request, 'login/login.html')
+
+def register(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+
+    try:
+        auth.create_user_with_email_and_password(email, password)
+        message = "Your account has been successfully registered."
+    except:
+        message = "There's an issue creating your account."
+        return render(request, "login/login.html", {"message": message})
+
+    return render(request, "login/login.html", {"message": message})
