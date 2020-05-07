@@ -1,0 +1,42 @@
+{% extends "home/base.html" %}
+
+{% block title %}Mission{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          style="width: 10%;"
+        ></div>
+      </div>
+
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+          <h2><strong>{{ mission.mission_title }}</strong></h2><br>
+          <p class="lead">
+            {% autoescape off %}
+            {{ mission.mission_description }}
+            {% endautoescape %}
+          </p>
+          {% if mission.id == 1 %}
+
+          {% elif mission.id == 2 %}
+
+          {% elif mission.id == 3 %}
+
+          {% elif mission.id == 4 %}
+
+          {% elif mission.id == 5 %}
+
+          {% elif mission.id == 6 %}
+
+          {% elif mission.id == 7 %}
+          <script src='https://poll.app.do/iframe/testing-poll-2867017.js'></script>
+
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+{% endblock %}

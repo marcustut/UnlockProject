@@ -2,33 +2,23 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import *
-from home.models import MissionDetail
-
-class MissionDetailsAdmin(admin.ModelAdmin):
-    fieldsets = [
-        ('Mission Details',     {'fields': ['mission_title', 'mission_description', 'start_time', 'end_time']})
-    ]
-    list_display = ('mission_title', 'start_time', 'end_time', 'nearest_mission')
-    list_filter = ['start_time']
-    search_fields = ['mission_title']
 
 class RulesAndRegulationsAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Rule Description',    {'fields': ['rule']}),
+        ('Rule Description',    {'fields': ['rule_chi', 'rule_eng']}),
         ('Date Information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
-    list_display = ('rule', 'pub_date', 'was_added_recently')
+    list_display = ('rule_chi', 'rule_eng', 'pub_date', 'was_added_recently')
     list_filter = ['pub_date']
-    search_fields = ['rule']
+    search_fields = ['rule_eng']
 
 
 class EmergencyContactAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Emergency Contact',            {'fields': ['name', 'phone_number']}),
+        ('Emergency Contact',            {'fields': ['name_chi', 'name_eng', 'phone_number']}),
     ]
-    list_display = ('name', 'phone_number')
-    search_fields = ['name']
+    list_display = ('name_chi', 'name_eng', 'phone_number')
+    search_fields = ['name_eng']
 
-admin.site.register(MissionDetail, MissionDetailsAdmin)
 admin.site.register(RulesAndRegulation, RulesAndRegulationsAdmin)
 admin.site.register(EmergencyContact, EmergencyContactAdmin)

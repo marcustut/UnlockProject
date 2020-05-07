@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-{% if message %}
-<script>
-  alert("{{ message }}");
-</script>
-{% endif %}
+{% for message in messages %}
+  <script>alert("{{ message }}");</script>
+{% endfor %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,17 +11,22 @@
     <link rel="icon" type="image/png" href="{% static 'images/Logo.png' %}" />
     <link rel="stylesheet" href="{% static 'images/login.css' %}" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #000000 url("{% static 'images/unlockBG.jpg' %}");
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <div class="title-image">
         <!-- <img src="{% static 'images/Title.svg' %}" alt="" /> -->
       </div>
-      <form class="login-form" action="{% url 'login:postsign' %}" method="POST">
+      <form class="login-form" method="POST" action="{% url 'login:postsign' %}">
         {% csrf_token %}
         <div class="email-container">
-          <label for="email">Email:</label><br />
-          <input type="text" name="email" style="text-align: center;"/><br />
+          <label for="email">Username:</label><br />
+          <input type="text" name="username" style="text-align: center;"/><br />
         </div>
         <div class="password-container">
           <label for="password">Password:</label><br />

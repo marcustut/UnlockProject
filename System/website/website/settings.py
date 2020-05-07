@@ -120,6 +120,7 @@ else:
 # Default URL
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home/'
 
 
 # Password validation

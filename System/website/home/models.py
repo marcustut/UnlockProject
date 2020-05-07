@@ -3,12 +3,15 @@ from django import forms
 from django.utils import timezone
 import datetime
 from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class MissionDetail(models.Model):
-    mission_title = models.CharField(max_length=200, default="Insert Mission Title Here.")
-    mission_description = models.CharField(max_length=200, default="Insert Mission Details Here.")
+    mission_title_chi = models.CharField(max_length=200, default='输入任务主题')
+    mission_title_eng = models.CharField(max_length=200, default='Insert Mission Title here.')
+    mission_description_chi = models.TextField(default='输入任务资料')
+    mission_description_eng = models.TextField(default='Insert Mission Details Here.')
     start_time = models.DateTimeField('Start Time')
     end_time = models.DateTimeField('End Time')
 
@@ -26,14 +29,31 @@ class MissionDetail(models.Model):
     nearest_mission.short_description = 'Today\'s Mission'
 
     def __str__(self):
-        return self.mission_title
+        return self.mission_title_chi + ' ' + self.mission_title_eng
 
-class AccountDetail(models.Model):
+class Inspector(models.Model):
+    SATELLITE_CHOICES = [
+        ('KL', 'Kuchai Lama'),
+        ('PUC', 'Puchong'),
+        ('STP', 'Setapak'),
+        ('RW', 'Rawang'),
+        ('PJ', 'Petaling Jaya'),
+        ('USJ', 'UEP Subang Jaya'),
+        ('KLG', 'Klang'),
+        ('KP', 'Kepong'),
+        ('SB', 'Seremban'),
+        ('SD', 'Serdang'),
+        ('KJ', 'Kajang'),
+        ('SGL', 'Sungai Long'),
+    ]
+
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    phone_number = PhoneNumberField(null=False, blank=False, unique=True)
-    satellite = models.CharField(max_length=200)
+    phone_number = PhoneNumberField(null=False, blank=False, unique=True, default="+60")
+    satellite = models.CharField(max_length=200, choices=SATELLITE_CHOICES)
     pastoral_team = models.CharField(max_length=200)
     pastoral_cg = models.CharField(max_length=200)
-    email = models.EmailField(max_length=254)
-    password = models.CharField(max_length=128)
     points = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user

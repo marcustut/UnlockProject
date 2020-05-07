@@ -3,6 +3,7 @@ from . import views
 
 app_name = 'home'
 urlpatterns = [
-    path('', views.redirectToLogin, name='redirectToLogin'),
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
+    path('mission/', views.MissionSubmission.as_view(), name='mission'),
+    path('mission/submit/<int:mission_id>', views.Submit.as_view(), name='submit'),
 ]

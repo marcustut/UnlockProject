@@ -1,116 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>绝密追查 - Mission Page</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% load static %}
-    <!--Website Logo-->
-    <link rel="icon" type="image/png" href="{% static 'images/Logo.png' %}" />
-    <!--Bootstrap 4.4-->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <script>
-    function startTime() {
-      var today = new Date();
-      var h = today.getHours();
-      var m = today.getMinutes();
-      var s = today.getSeconds();
-      m = checkTime(m);
-      s = checkTime(s);
-      document.getElementById('datetime').innerHTML =
-      h + ":" + m + ":" + s;
-      var t = setTimeout(startTime, 500);
-    }
-    function checkTime(i) {
-      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-      return i;
-    }
-    </script>
-    <style>
-      body {
-        background: #000000 url("{% static 'images/unlockBG.jpg' %}");
-      }
+{% extends "home/base.html" %}
 
-      footer {
-        background-color: #343a40;
-        color: white;
-      }
+{% block title %}Home{% endblock %}
 
-      footer > * {
-        margin: 3px;
-        height: auto;
-      }
-
-      .progress {
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-      }
-
-      .progress-bar {
-        background-color: #343a40;
-      }
-
-      .container {
-        color: white;
-      }
-
-      .locked-mission {
-        background-color: #52575c;
-        border-radius: 1vw;
-        background-image: url("{% static 'images/Lock.png' %}");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100px 100px;
-      }
-
-      .locked-mission > * {
-        visibility: hidden;
-      }
-
-      .active-mission {
-        background-color: #343a40;
-        border-radius: 1vw;
-      }
-    </style>
-  </head>
-  <body onload=startTime()>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between"
-    >
-      <a class="navbar-brand" href="http://fgacyc.com/church/" target="_blank">
-        <img
-          src="{% static 'images/CYCLogo.png' %}"
-          width="58"
-          height="25"
-          style="margin-top: -5px;"
-          alt=""
-        />
-      </a>
-
-      <a
-        class="navbar-brand"
-        href="https://www.instagram.com/fgacycyw/"
-        target="_blank"
-      >
-        <img
-          src="{% static 'images/TitleLogo.png' %}"
-          width="100"
-          height="25"
-          style="margin-top: -5px;"
-          alt=""
-        />
-      </a>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="location.href='{% url 'login:logout' %}'"
-      >
-        Logout
-      </button>
-    </nav>
-
+{% block content %}
     <div class="container">
       <div class="progress">
         <div
@@ -119,59 +11,93 @@
         ></div>
       </div>
 
-        <div class="row">
-        {% for mission in missions|slice:":3" %}
-          <div class="col-sm">
-            {% if now > mission.start_time.date %}
-              <div class="jumbotron active-mission" style="text-align: center;">
-            {% else %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-            {% endif %}
-                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
-                <p class="lead">{{ mission.mission_description }}</p>
-                <a class="btn btn-secondary" href="#" role="button">Submit</a>
-              </div>
-          </div>
-        {% endfor %}
-        </div>
+    <div class="container align-content-center">
+      <div class="row">
+        <!--Mission Submission Column-->
+          <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#MissionSubmission">
+              Mission Submission
+            </button>
 
+            <!-- Modal -->
+            <div class="modal fade" id="MissionSubmission" tabindex="-1" role="dialog" aria-labelledby="MissionSubmissionTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="color:black">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="MissionSubmissionTitle"><b>Mission Submission</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This is a portal where you and your group members will submit your answers. Only missions that are to date is opened. Else, it's locked.
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'home:mission' %}'">Bring me there</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+          </div>
+      </div>
+        <!--Information Board Column-->
         <div class="row">
-        {% for mission in missions|slice:"3:6" %}
-          <div class="col-sm">
-            {% if now > mission.start_time.date %}
-              <div class="jumbotron active-mission" style="text-align: center;">
-            {% else %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-            {% endif %}
-                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
-                <p class="lead">{{ mission.mission_description }}</p>
-                <a class="btn btn-secondary" href="#" role="button">Submit</a>
-              </div>
-          </div>
-        {% endfor %}
-        </div>
+          <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#InfoBoard">
+              Information Board
+            </button>
 
-        <div class="row mb-5">
-        {% for mission in missions|slice:"6:9" %}
-          <div class="col-sm">
-            {% if now > mission.start_time.date %}
-              <div class="jumbotron active-mission" style="text-align: center;">
-            {% else %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-            {% endif %}
-                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
-                <p class="lead">{{ mission.mission_description }}</p>
-                <a class="btn btn-secondary" href="#" role="button">Submit</a>
+            <!-- Modal -->
+            <div class="modal fade" id="InfoBoard" tabindex="-1" role="dialog" aria-labelledby="InfoBoardTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="color:black">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="InfoBoardTitle"><b>Information Board</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This is where you can get about any information of the game.
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="location.href=''">Bring me there</button>
+                  </div>
+                </div>
               </div>
+            </div>
           </div>
-        {% endfor %}
         </div>
+        <!--Top Ranking Column-->
+        <div class="row">
+          <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#TopRanking">
+              Top Ranking
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="TopRanking" tabindex="-1" role="dialog" aria-labelledby="TopRankingTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="color:black">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="TopRankingTitle"><b>Top Ranking</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This is where you can see the ranking of all groups currently competing.
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="location.href=''">Bring me there</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
-
-    <script src='https://poll.app.do/iframe/testing-poll-2867017.js'></script>
-
-    <footer class="container-fluid text-center fixed-bottom">
-      <p>Malaysia Time: <span id="datetime"></span></p>
-    </footer>
-  </body>
-</html>
+{% endblock %}

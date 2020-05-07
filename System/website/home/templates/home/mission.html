@@ -1,0 +1,60 @@
+{% extends "home/base.html" %}
+
+{% block title %}Mission{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          style="width: 10%;"
+        ></div>
+      </div>
+
+        <div class="row">
+        {% for mission in missions|slice:":3" %}
+          <div class="col-sm">
+            {% if now > mission.start_time %}
+              <div class="jumbotron active-mission" style="text-align: center;">
+            {% else %}
+              <div class="jumbotron locked-mission" style="text-align: center;">
+            {% endif %}
+                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2><br>
+                <a class="btn btn-secondary" href="{% url 'home:submit' mission_id=mission.id %}" role="button">Challenge Now</a>
+              </div>
+          </div>
+        {% endfor %}
+        </div>
+
+        <div class="row">
+        {% for mission in missions|slice:"3:6" %}
+          <div class="col-sm">
+            {% if now > mission.start_time %}
+              <div class="jumbotron active-mission" style="text-align: center;">
+            {% else %}
+              <div class="jumbotron locked-mission" style="text-align: center;">
+            {% endif %}
+                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2><br>
+                <a class="btn btn-secondary" href="{% url 'home:submit' mission_id=mission.id %}" role="button">Challenge Now</a>
+              </div>
+          </div>
+        {% endfor %}
+        </div>
+
+        <div class="row mb-5">
+        {% for mission in missions|slice:"6:9" %}
+          <div class="col-sm">
+            {% if now > mission.start_time %}
+              <div class="jumbotron active-mission" style="text-align: center;">
+            {% else %}
+              <div class="jumbotron locked-mission" style="text-align: center;">
+            {% endif %}
+                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2><br>
+                <a class="btn btn-secondary" href="{% url 'home:submit' mission_id=mission.id %}" role="button">Challenge Now</a>
+              </div>
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
