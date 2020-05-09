@@ -1,0 +1,18 @@
+{% extends "home/base.html" %}
+
+{% block title %}Locked{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+            <h1><b>Mission Locked</b></h1>
+            <h3>Dear <b>{{ request.user.username }}</b>, please don't try to cheat.</h3><br>
+            <p>This mission is unavailable until <kbd>{{ mission.start_time }}</kbd><br>Please contact our Game Master at Facebook if you think this is incorrect.</p>
+            <a href="{% url 'home:mission' %}" class="btn btn-secondary btn-sm">
+                Go back to Mission
+            </a>
+        </div>
+      </div>
+    </div>
+{% endblock %}

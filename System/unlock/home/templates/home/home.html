@@ -1,0 +1,97 @@
+{% extends "home/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="container align-content-center">
+      <div class="row">
+        <!--Mission Submission Column-->
+          <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#MissionSubmission">
+              Mission Submission
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="MissionSubmission" tabindex="-1" role="dialog" aria-labelledby="MissionSubmissionTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="color:black">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="MissionSubmissionTitle"><b>Mission Submission</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This is a portal where you and your group members will submit your answers. Only missions that are to date is opened. Else, it's locked.
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'home:mission' %}'">Bring me there</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+          </div>
+      </div>
+        <!--Information Board Column-->
+        <div class="row">
+          <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#InfoBoard">
+              Information Board
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="InfoBoard" tabindex="-1" role="dialog" aria-labelledby="InfoBoardTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="color:black">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="InfoBoardTitle"><b>Information Board</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This is where you can get about any information of the game.
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="location.href=''">Bring me there</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Top Ranking Column-->
+        <div class="row">
+          <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#TopRanking">
+              Top Ranking
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="TopRanking" tabindex="-1" role="dialog" aria-labelledby="TopRankingTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="color:black">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="TopRankingTitle"><b>Top Ranking</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This is where you can see the ranking of all groups currently competing.
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="location.href=''">Bring me there</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+{% endblock %}

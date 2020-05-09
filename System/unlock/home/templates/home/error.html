@@ -1,0 +1,18 @@
+{% extends "home/base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+            <h1><b>Oh No!</b></h1>
+            <h3>There's an issue submitting your answers😢</h3><br>
+            <p>The mission you have submitted is -> <kbd>{{ mission.mission_title_chi }} {{ mission.mission_title_eng }}</kbd><br>Please try uploading again or seek for help at our Facebok Page.</p>
+            <a href="https://www.facebook.com/ywunlock2020/" class="btn btn-primary btn-sm">
+                Go to Facebook
+            </a>
+        </div>
+      </div>
+    </div>
+{% endblock %}
