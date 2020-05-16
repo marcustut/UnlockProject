@@ -48,12 +48,18 @@ class Inspector(models.Model):
     ]
 
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     phone_number = PhoneNumberField(null=False, blank=False, unique=True, default="+60")
     satellite = models.CharField(max_length=200, choices=SATELLITE_CHOICES)
     pastoral_team = models.CharField(max_length=200)
     pastoral_cg = models.CharField(max_length=200)
     points = models.IntegerField(default=0)
+    m1 = models.BooleanField(verbose_name='m1 completed', default=False)
+    m2 = models.BooleanField(verbose_name='m2 completed', default=False)
+    m3 = models.BooleanField(verbose_name='m3 completed', default=False)
+    m4 = models.BooleanField(verbose_name='m4 completed', default=False)
+    m5 = models.BooleanField(verbose_name='m5 completed', default=False)
+    m6 = models.BooleanField(verbose_name='m6 completed', default=False)
 
     def __str__(self):
         return self.name

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from google.oauth2 import service_account
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'login.apps.LoginConfig',
     'infoboard.apps.InfoboardConfig',
+    'control.apps.ControlConfig',
 ]
 
 MIDDLEWARE = [
@@ -150,8 +152,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://storage.cloud.google.com/unlock2020.appspot.com/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "boot"),
 ]
+
+# Google Cloud Storage Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'unlock2020.appspot.com'
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'credentials/cloudstorage.json')
+)
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'

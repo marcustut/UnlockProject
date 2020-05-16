@@ -7,10 +7,16 @@
         <div class="row">
         {% for mission in missions|slice:":3" %}
           <div class="col-sm">
-            {% if forloop.counter == 3 %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-            {% elif now > mission.start_time %}
+            {% if forloop.counter == 1 and user.m1 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif forloop.counter == 2 and user.m2 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif forloop.counter == 3 and user.m3 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif now > mission.start_time and now < mission.end_time %}
               <div class="jumbotron active-mission" style="text-align: center;">
+            {% elif mission.end_time < now %}
+              <div class="jumbotron failed-mission" style="text-align: center;">
             {% else %}
               <div class="jumbotron locked-mission" style="text-align: center;">
             {% endif %}
@@ -25,10 +31,16 @@
         <div class="row">
         {% for mission in missions|slice:"3:6" %}
           <div class="col-sm">
-            {% if forloop.counter == 1 %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-            {% elif now > mission.start_time %}
+            {% if forloop.counter == 1 and user.m4 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif forloop.counter == 2 and user.m5 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif forloop.counter == 3 and user.m6 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif now > mission.start_time and now < mission.end_time %}
               <div class="jumbotron active-mission" style="text-align: center;">
+            {% elif mission.end_time < now %}
+              <div class="jumbotron failed-mission" style="text-align: center;">
             {% else %}
               <div class="jumbotron locked-mission" style="text-align: center;">
             {% endif %}
@@ -40,11 +52,19 @@
         {% endfor %}
         </div>
 
-        <div class="row mb-5">
+        <!-- <div class="row mb-5">
         {% for mission in missions|slice:"6:9" %}
           <div class="col-sm">
-            {% if now > mission.start_time %}
+            {% if forloop.counter == 7 and user.m7 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif forloop.counter == 8 and user.m8 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif forloop.counter == 9 and user.m9 %}
+              <div class="jumbotron completed-mission" style="text-align: center;">
+            {% elif now > mission.start_time and now < mission.end_time %}
               <div class="jumbotron active-mission" style="text-align: center;">
+            {% elif mission.end_time < now %}
+              <div class="jumbotron failed-mission" style="text-align: center;">
             {% else %}
               <div class="jumbotron locked-mission" style="text-align: center;">
             {% endif %}
@@ -54,7 +74,7 @@
               </div>
           </div>
         {% endfor %}
-        </div>
+        </div> -->
     </div>
 
 {% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from infoboard.views import InfoBoard
+from infoboard import views as infoboard_views
 from login import views as login_views
 
 urlpatterns = [
@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('register/', login_views.register, name='register'),
-    path('infoboard/', InfoBoard.as_view()),
+    path('infoboard/', infoboard_views.infoboard, name='infoboard'),
 ]

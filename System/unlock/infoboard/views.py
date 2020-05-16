@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.utils import timezone
+from django.shortcuts import render, redirect
 
 # Twilio
 from twilio.twiml.messaging_response import MessagingResponse
@@ -23,7 +24,7 @@ client = Client(account_sid, auth_token)
 
 # Class-based views
 @method_decorator(csrf_exempt, name='dispatch')
-class InfoBoard(View):
+class WhatsAppInfoboard(View):
     def get(self, request):
         return HttpResponse('Use our WhatsApp Bot!')
 
@@ -125,3 +126,6 @@ class InfoBoard(View):
             msg.body(msg_EmergencyContact)
 
         return HttpResponse(str(resp))
+
+def infoboard(request):
+    return render(request, 'infoboard/infoboard.html')

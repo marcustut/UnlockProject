@@ -9,16 +9,16 @@
         <!--Mission Submission Column-->
           <div class="jumbotron jumbotron-fluid active-mission w-100" style="text-align: center;">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#MissionSubmission">
-              Mission Submission
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Mission">
+              Mission
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="MissionSubmission" tabindex="-1" role="dialog" aria-labelledby="MissionSubmissionTitle" aria-hidden="true">
+            <div class="modal fade" id="Mission" tabindex="-1" role="dialog" aria-labelledby="MissionTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content" style="color:black">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="MissionSubmissionTitle"><b>Mission Submission</b></h5>
+                    <h5 class="modal-title" id="MissionTitle"><b>Mission</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -56,7 +56,7 @@
                     This is where you can get about any information of the game.
                   </div>
                   <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary" onclick="location.href=''">Bring me there</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'infoboard' %}'">Bring me there</button>
                   </div>
                 </div>
               </div>

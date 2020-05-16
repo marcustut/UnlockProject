@@ -1,0 +1,24 @@
+{% extends "home/base.html" %}
+
+{% block title %}Infoboard{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+            <h1 class="mb-5 mt-n3"><b>Infoboard</b></h5>
+            <widgetbot
+            server="709468645759254983"
+            channel="709468646384336908"
+            width="100%"
+            height="600"
+            shard="https://e.widgetbot.io"
+            ></widgetbot>
+            <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+
+            <p class="mt-5">if the embedded Discord feels laggy, you can join the server from your own Discord app.</p>
+            <a href="https://discord.gg/bywdbey" class="btn btn-primary mt-3"><i class="fab fa-discord mr-2 mt-1"></i>Join Server</a>
+        </div>
+      </div>
+    </div>
+{% endblock %}

@@ -7,11 +7,12 @@
       <div class="jumbotron active-mission mb-5">
         <div class="container-fluid text-center">
             <h1><b>Congratulations!</b></h1>
-            <h3>Your answer has been successfully submitted.</h3><br>
-            <p>The mission you have submitted is -> <kbd>{{ mission.mission_title_chi }} {{ mission.mission_title_eng }}</kbd><br>Please contact our Game Master at Facebook to verify your answer and receive your points.</p>
-            <a href="https://www.facebook.com/ywunlock2020/" class="btn btn-primary btn-sm">
-                Go to Facebook
+            <h3>Your answer is correct.</h3><br>
+            <p>The mission you have submitted is -> <kbd>{{ mission.mission_title_chi }} {{ mission.mission_title_eng }}</kbd><br>Please seek for help in our Discord Server if there's any enquiries.</p>
+            <a href="{% url 'home:mission' %}" class="btn btn-primary btn-sm">
+                Go back to Mission
             </a>
+            <a href="https://discord.gg/7mgxSBc" class="btn btn-primary btn-sm ml-3"><i class="fab fa-discord mr-2 mt-1"></i>Go to Discord</a>
         </div>
       </div>
     </div>

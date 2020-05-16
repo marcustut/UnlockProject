@@ -20,14 +20,16 @@ class MissionDetailsAdmin(admin.ModelAdmin):
 
 
 class InspectorAdmin(admin.ModelAdmin):
-    fieldset = [
+    fieldsets = [
         ('Inspector Details',   {'fields': [
          'user', 'name', 'phone_number', 'points']}),
         ('Pastoral Details',    {'fields': [
-         'satellite', 'pastoral_team', 'pastoral_cg']})
+         'satellite', 'pastoral_team', 'pastoral_cg']}),
+        ('Mission Progress',    {'fields': [
+         'm1', 'm2', 'm3', 'm4', 'm5', 'm6']})
     ]
     list_display = ('user', 'name', 'phone_number', 'satellite', 'pastoral_cg')
-    list_filter = ['name']
+    list_filter = ['satellite']
     search_fields = ['name', 'satellite', 'pastoral_cg']
 
 
