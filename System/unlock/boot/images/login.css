@@ -3,8 +3,10 @@
   margin: 0;
 }
 
+{% load static %}
+{% autoescape off %}
 body {
-  background: black url("https://storage.cloud.google.com/unlock2020.appspot.com/images/unlockBG.jpg");
+  background: black url("{% static 'images/unlockBG.jpg' %}");
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   color: white;
@@ -12,7 +14,7 @@ body {
 
 @media only screen and (min-width: 674px) {
   .container {
-    background-image: url("https://storage.cloud.google.com/unlock2020.appspot.com/images/BG_IMG_Desktop.svg");
+    background-image: url("{% static 'images/BG_IMG_Desktop.svg' %}");
     background-repeat: no-repeat;
     background-position: center;
     flex-direction: column;
@@ -75,7 +77,7 @@ body {
 
 @media only screen and (max-width: 674px) {
   .container {
-    background-image: url("https://storage.cloud.google.com/unlock2020.appspot.com/images/BG_IMG_Mobile.svg");
+    background-image: url("{% static 'images/BG_IMG_Mobile.svg' %}");
     background-repeat: no-repeat;
     background-position: center;
     flex-direction: column;
@@ -140,7 +142,7 @@ body {
 
 @media only screen and (max-width: 674px) and (max-height: 615px) {
   .container {
-    background-image: url("https://storage.cloud.google.com/unlock2020.appspot.com/images/BG_IMG_Mobile.svg");
+    background-image: url("{% static 'images/BG_IMG_Mobile.svg' %}");
     background-repeat: no-repeat;
     background-position: center;
     flex-direction: column;
@@ -204,7 +206,7 @@ body {
 
 @media only screen and (max-width: 674px) and (max-height: 393px) {
   .container {
-    background-image: url("https://storage.cloud.google.com/unlock2020.appspot.com/images/BG_IMG_Mobile.svg");
+    background-image: url("{% static 'images/BG_IMG_Mobile.svg' %}");
     background-repeat: no-repeat;
     background-position: center;
     flex-direction: column;
@@ -266,3 +268,4 @@ body {
     font-style: normal;
   }
 }
+{% endautoescape %}

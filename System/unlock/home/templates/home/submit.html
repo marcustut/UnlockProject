@@ -116,11 +116,6 @@
           <!-- <h5>This game is still under development.</h5> -->
           <form method="POST" class="form-group row">
             {% csrf_token %}
-            <label for="inputQ1" class="col-sm-10 col-form-label"><kbd>0:30 - 0:39 左边有多少个架构相识的建筑物？</kbd></label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" id="inputQ1" placeholder="Answer">
-            </div>
-            <button type="submit" class="btn btn-light ml-3">Submit</button>
           </form>
           {% elif mission.id == 4 %}
           <br>
@@ -132,9 +127,12 @@
           <div style="padding:55% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/418081125" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
           <br>
           <br>
+          <button class="btn btn-primary btn-sm col-sm-3 mb-4" onclick="swapLang()">
+            Change Language
+          </button>
           <form method="POST" class="form-group row">
             {% csrf_token %}
-            <label for="inputQ1" class="col-sm-10 col-form-label text-left" style="font-size: x-large;">1) 0:30 - 0:39 左边有多少个架构相识的建筑物？</label>
+            <label for="inputQ1" class="col-sm-10 col-form-label text-left" id="labelQ1" style="font-size: x-large;">1) <kbd>0:30 - 0:39</kbd> 左边有多少个架构相似的建筑物？</label>
               {% if inputQ1_invalid %}
               <div class="col-sm-2">
                 <input type="text" class="form-control is-invalid" id="inputQ1" name="inputQ1" value="{{ inputQ1 }}" placeholder="Answer" tabindex="1" required>
@@ -148,7 +146,7 @@
                 <input type="text" class="form-control" id="inputQ1" name="inputQ1" value="{{ inputQ1 }}" placeholder="Answer" tabindex="1" required>
               </div>
               {% endif %}
-            <label for="inputQ2" class="col-sm-10 col-form-label text-left" style="font-size: x-large;">2) 1:18 啰哩前面的车是什么颜色？</label>
+            <label for="inputQ2" class="col-sm-10 col-form-label text-left" id="labelQ2" style="font-size: x-large;">2) <kbd>1:18</kbd> 啰哩前面的车是什么颜色？</label>
               {% if inputQ2_invalid %}
               <div class="col-sm-2">
                 <input type="text" class="form-control is-invalid" id="inputQ2" name="inputQ2" value="{{ inputQ2 }}" placeholder="Answer" tabindex="2" required>
@@ -162,7 +160,7 @@
                 <input type="text" class="form-control" id="inputQ2" name="inputQ2" value="{{ inputQ2 }}" placeholder="Answer" tabindex="2" required>
               </div>
               {% endif %}
-            <label for="inputQ3" class="col-sm-10 col-form-label text-left" style="font-size: x-large;">3) 1:27 迎面而来的车是什么颜色？</label>
+            <label for="inputQ3" class="col-sm-10 col-form-label text-left" id="labelQ3" style="font-size: x-large;">3) <kbd>1:27</kbd> 迎面而来的车是什么颜色？</label>
               {% if inputQ3_invalid %}
               <div class="col-sm-2">
                 <input type="text" class="form-control is-invalid" id="inputQ3" name="inputQ3" value="{{ inputQ3 }}" placeholder="Answer" tabindex="3" required>
@@ -176,7 +174,7 @@
                 <input type="text" class="form-control" id="inputQ3" name="inputQ3" value="{{ inputQ3 }}" placeholder="Answer" tabindex="3" required>
               </div>
               {% endif %}
-            <label for="inputQ4" class="col-sm-10 col-form-label text-left" style="font-size: x-large;">4) 第一个拐的方向</label>
+            <label for="inputQ4" class="col-sm-10 col-form-label text-left" id="labelQ4" style="font-size: x-large;">4) 第一个拐的方向</label>
               {% if inputQ4_invalid %}
               <div class="col-sm-2">
                 <input type="text" class="form-control is-invalid" id="inputQ4" name="inputQ4" value="{{ inputQ4 }}" placeholder="Answer" tabindex="4" required>
@@ -190,7 +188,7 @@
                 <input type="text" class="form-control" id="inputQ4" name="inputQ4" value="{{ inputQ4 }}" placeholder="Answer" tabindex="4" required>
               </div>
               {% endif %}
-            <label for="inputQ5" class="col-sm-10 col-form-label text-left" style="font-size: x-large;">5) 1:26 左边的铁门是什么颜色？</label>
+            <label for="inputQ5" class="col-sm-10 col-form-label text-left" id="labelQ5" style="font-size: x-large;">5) <kbd>1:26</kbd> 左边的铁门是什么颜色？</label>
               {% if inputQ5_invalid %}
               <div class="col-sm-2">
                 <input type="text" class="form-control is-invalid" id="inputQ5" name="inputQ5" value="{{ inputQ5 }}" placeholder="Answer" tabindex="5" required>
@@ -200,13 +198,13 @@
                 <input type="text" class="form-control is-valid" id="inputQ5" name="inputQ5" value="{{ inputQ5 }}" placeholder="Answer" tabindex="5" required>
               </div>
               {% else %}
-              <div class="col-sm-2">
+              <div class="col-sm-2 ">
                 <input type="text" class="form-control" id="inputQ5" name="inputQ5" value="{{ inputQ5 }}" placeholder="Answer" tabindex="5" required>
               </div>
               {% endif %}
-            <div>
-              <input class="btn btn-primary mt-5 ml-2" type="submit" value="Submit" tabindex="6"/>
-            </div>
+              <div class="container">
+                <input class="btn btn-primary col-sm-2 mt-5" type="submit" value="Submit" tabindex="6"/>
+              </div>
           </form>
           {% elif mission.id == 6 %}
           <br>
@@ -217,6 +215,69 @@
           {% endif %}
         </div>
       </div>
-
     </div>
+    <script>
+      function swapLang() {
+        var q1 = document.getElementById("labelQ1");
+        var q2 = document.getElementById("labelQ2");
+        var q3 = document.getElementById("labelQ3");
+        var q4 = document.getElementById("labelQ4");
+        var q5 = document.getElementById("labelQ5");
+        var i1 = document.getElementById("inputQ1");
+        var i2 = document.getElementById("inputQ2");
+        var i3 = document.getElementById("inputQ3");
+        var i4 = document.getElementById("inputQ4");
+        var i5 = document.getElementById("inputQ5");
+
+        if (q1.innerHTML === "1) <kbd>0:30 - 0:39</kbd> 左边有多少个架构相似的建筑物？") {
+          q1.innerHTML = "1) <kbd>0:30 - 0:39</kbd> How many buildings are there that looks similarly to each other on the left side of the video?";
+          q1.setAttribute("style", "font-size: normal;");
+          i1.setAttribute("class", "form-control form-control-sm");
+        } else {
+          q1.innerHTML = "1) <kbd>0:30 - 0:39</kbd> 左边有多少个架构相似的建筑物？";
+          q1.setAttribute("style", "font-size: x-large;");
+          i1.setAttribute("class", "form-control");
+        }
+
+        if (q2.innerHTML === "2) <kbd>1:18</kbd> 啰哩前面的车是什么颜色？") {
+          q2.innerHTML = "2) <kbd>1:18</kbd> What colour is the vehicle in front of the lorry? ";
+          q2.setAttribute("style", "font-size: normal;");
+          i2.setAttribute("class", "form-control form-control-sm");
+        } else {
+          q2.innerHTML = "2) <kbd>1:18</kbd> 啰哩前面的车是什么颜色？";
+          q2.setAttribute("style", "font-size: x-large;");
+          i2.setAttribute("class", "form-control");
+        }
+
+        if (q3.innerHTML === "3) <kbd>1:27</kbd> 迎面而来的车是什么颜色？") {
+          q3.innerHTML = "3) <kbd>1:27</kbd> : What is the colour of the car at the opposite of the road?";
+          q3.setAttribute("style", "font-size: normal;");
+          i3.setAttribute("class", "form-control form-control-sm");
+        } else {
+          q3.innerHTML = "3) <kbd>1:27</kbd> 迎面而来的车是什么颜色？";
+          q3.setAttribute("style", "font-size: x-large;");
+          i3.setAttribute("class", "form-control");
+        }
+
+        if (q4.innerHTML === "4) 第一个拐的方向") {
+          q4.innerHTML = "4) The first turn was towards which direction? ";
+          q4.setAttribute("style", "font-size: normal;");
+          i4.setAttribute("class", "form-control form-control-sm");
+        } else {
+          q4.innerHTML = "4) 第一个拐的方向";
+          q4.setAttribute("style", "font-size: x-large;");
+          i4.setAttribute("class", "form-control");
+        }
+
+        if (q5.innerHTML === "5) <kbd>1:26</kbd> 左边的铁门是什么颜色？") {
+          q5.innerHTML = "5) <kbd>1:26</kbd>  What is the colour of the gate on the left? ";
+          q5.setAttribute("style", "font-size: normal;");
+          i5.setAttribute("class", "form-control form-control-sm");
+        } else {
+          q5.innerHTML = "5) <kbd>1:26</kbd> 左边的铁门是什么颜色？";
+          q5.setAttribute("style", "font-size: x-large;");
+          i5.setAttribute("class", "form-control");
+        }
+      }
+    </script>
 {% endblock %}

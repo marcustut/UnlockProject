@@ -56,19 +56,20 @@ async def on_message(message):
 
         # Mission Details
         if message.content.strip().lower() == '!mission':
-            title_MissionDetail = f'Mission Details 🗒️\n'
-            list_of_missions = ''
+            # title_MissionDetail = f'Mission Details 🗒️\n'
+            # list_of_missions = ''
 
-            for mission in MissionDetail.objects.all().order_by('start_time'):
-                list_of_missions += f'{mission.id}. {mission.mission_title_chi} {mission.mission_title_eng}\n'
+            # for mission in MissionDetail.objects.all().order_by('start_time'):
+            #     list_of_missions += f'{mission.id}. {mission.mission_title_chi} {mission.mission_title_eng}\n'
 
-            title_MissionDetail += list_of_missions
-            command_example = '\neg: !mission 3'
-            title_MissionDetail += command_example
+            # title_MissionDetail += list_of_missions
+            # command_example = '\neg: !mission 3'
+            # title_MissionDetail += command_example
 
-            print('Mission List sent.')
+            # print('Mission List sent.')
 
-            await message.channel.send(title_MissionDetail)
+            # await message.channel.send(title_MissionDetail)
+            await message.channel.send("This feature is under development.")
         elif message.content.strip().lower().startswith('!mission'):
             idx = message.content.strip().split()[1]
 

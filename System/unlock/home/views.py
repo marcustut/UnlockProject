@@ -88,7 +88,7 @@ def check_carcam_ans(ans, q_no):
         else:
             return False
     elif q_no == 4:
-        if ans == 'left' or ans == '左':
+        if ans == 'left' or ans == 'left side' or ans == '左' or ans == '左边':
             return True
         else:
             return False
@@ -116,7 +116,7 @@ class MissionSubmission(View):
         now = Control.objects.all().first().game_time.replace(tzinfo=tz)
 
         context = {'now': now, 'missions': self.missions, 'user': user,}
-        return render(request, 'home/mission.html', context)
+        return render(request, 'home/mission_test.html', context)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class Submit(MissionSubmission):
@@ -278,7 +278,7 @@ class Submit(MissionSubmission):
                 time_used = now - mission.start_time
 
                 # Validate answers
-                if check_carcam_ans(request.POST.get('inputQ1').lower(), 1) and check_carcam_ans(request.POST.get('inputQ2').lower(), 2) and check_carcam_ans(request.POST.get('inputQ3').lower(), 3) and check_carcam_ans(request.POST.get('inputQ4').lower(), 4) and check_carcam_ans(request.POST.get('inputQ5').lower(), 5):
+                if check_carcam_ans(request.POST.get('inputQ1').strip().lower(), 1) and check_carcam_ans(request.POST.get('inputQ2').strip().lower(), 2) and check_carcam_ans(request.POST.get('inputQ3').strip().lower(), 3) and check_carcam_ans(request.POST.get('inputQ4').strip().lower(), 4) and check_carcam_ans(request.POST.get('inputQ5').strip().lower(), 5):
                     _pass = True
                 else:
                     if not check_carcam_ans(request.POST.get('inputQ1').lower(), 1):
