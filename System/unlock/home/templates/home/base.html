@@ -3,7 +3,7 @@
   <head>
     {% block head %}
     <title>绝密追查 - {% block title %}{% endblock %}</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load static %}
     <!--Website Logo-->
@@ -121,6 +121,145 @@
         width: 60px;
         height: 40px;
         text-align: center;
+      }
+
+      body {
+          counter-reset: crossword-row-counter;
+      }
+
+      #crossword {
+          min-width: 500px;
+          {% comment %} float: left; {% endcomment %}
+      }
+
+      .row-number {
+          font-size: 9px;
+          color: black;
+          float: left;
+          counter-increment: crossword-row-counter;
+
+      }
+
+      .row-number::after {
+          content: counter(crossword-row-counter);
+          z-index: 100;
+          position: absolute;
+          padding: 3px;
+      }
+
+      .crossword-letter {
+          width: 30px;
+          height: 30px;
+          text-align: center;
+          border: 2px solid black;
+          margin-left: -2px;
+          float: left;
+          text-transform: uppercase;
+      }
+
+      .crossword-letter:first-child {
+          margin: 0px;
+      }
+
+      .empty-letter {
+          width: 30px;
+          height: 30px;
+          margin-right: 2px;
+          float: left;
+          color: white;
+      }
+
+      .crossword-letter:focus {
+          background-color: #f1e7ee;
+
+      outline: none;
+      }
+
+      .clear {
+          clear: both;
+      }
+
+      .cross-row {
+          clear: both;
+      }
+
+      .cross-row .crossword-letter {
+          margin-top: -2px;
+      }
+
+      #submit_crossword {
+          background-color: #d70cf9;
+          border: none;
+          padding: 10px 55px;
+          color: white;
+          border-radius: 3px;
+          font-size: 18px;
+          margin: 30px 0px 10px 50px;
+          transition: all 0.5s;
+          cursor: pointer;
+      }
+
+      #submit_crossword:hover {
+          background-color: #8b0867;
+          box-shadow: 0px 3px #5e0746;
+      }
+
+      #submit_crossword:active {
+          box-shadow: inset 0px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      #submit_crossword:focus {
+          outline: none;
+      }
+
+      .good input {
+      background-color: #d0b7f1;
+      }
+
+      .bad input {
+          background-color: #f90e3a;
+      }
+
+
+      #questions {
+          font-family: arial;
+          font-size: 15px;
+      float: left;
+          margin-left: 35px;
+          line-height: 1.5;
+
+      }
+
+      #questions ul {
+          list-style: none;
+          padding: 10px 20px;
+          counter-reset: list-numbers;
+      }
+      main-highlighted {
+          animation: myanim 1s 1;
+          animation-fill-mode: forwards;
+      }
+
+      @keyframes myanim {
+          from {
+              background-color: #acedf3;
+              font-weight: normal;
+          }
+          to {
+              background-color: #830761;
+              font-weight: bold;
+              font-size: 24px;
+              color: #fff;
+          }
+      }
+
+      #questions ul li {
+      counter-increment: list-numbers;
+      }
+
+      #questions ul li::before {
+          content: counter(list-numbers)'. ';
+
       }
 
       /* Smartphone Portrait and Landscape */

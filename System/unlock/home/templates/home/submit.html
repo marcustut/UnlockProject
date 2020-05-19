@@ -31,7 +31,9 @@
           <br>
           <div class="container w-75">
             <div class="alert alert-danger mb-4" role="alert">
+              {% autoescape off %}
               {{ message }}
+              {% endautoescape %}
             </div>
           </div>
           {% endfor %}
@@ -52,7 +54,7 @@
                     {% else %}
                     <input class="spot-password form-control" type="text" minlength="1" maxlength="1" name="box1" tabindex="1" required>
                     {% endif %} -->
-                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ box1 }}" name="box1" tabindex="1" required>
+                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ SpotAnswers.0 }}" name="box1" tabindex="1" required>
                 </div>
               </div>
               <div class="col ml-n3">
@@ -63,7 +65,7 @@
                     {% else %}
                     <input class="spot-password form-control" type="text" minlength="1" maxlength="1" name="box2" tabindex="2" required>
                     {% endif %} -->
-                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ box2 }}" name="box2" tabindex="2" required>
+                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ SpotAnswers.1 }}" name="box2" tabindex="2" required>
               </div>
             </div>
             <br>
@@ -80,7 +82,7 @@
                     {% else %}
                     <input class="spot-password form-control" type="text" minlength="1" maxlength="1" name="box3" tabindex="3" required>
                     {% endif %} -->
-                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ box3 }}" name="box3" tabindex="3" required>
+                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ SpotAnswers.2 }}" name="box3" tabindex="3" required>
                   </div>
                 </div>
                 <div class="col ml-n3">
@@ -91,7 +93,7 @@
                     {% else %}
                     <input class="spot-password form-control" type="text" minlength="1" maxlength="1" name="box4" tabindex="4" required>
                     {% endif %} -->
-                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ box4 }}" name="box4" tabindex="4" required>
+                    <input class="spot-password-long form-control" type="text" minlength="1" maxlength="1" value="{{ SpotAnswers.3 }}" name="box4" tabindex="4" required>
                 </div>
               </div>
             </div>
@@ -105,10 +107,32 @@
           </audio>
           <br>
           <br>
-          <form method="POST" enctype="multipart/form-data" class="upload-form">
+          <h3 class="col-sm-12 mt-3" style="font-weight: bold;">Enter your answers below</h3>
+          <form method="POST" class="form-group row mt-5">
             {% csrf_token %}
-            <input type="file" name="filename" class="btn btn-light">
-            <button type="submit" class="btn btn-light ml-3">Submit</button>
+            <label for="audioInput1" class="col-sm-4 col-form-label text-center" id="audioLabel1">🎵 <kbd>第一首歌 Song 1</kbd> 🎶</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="audioInput1" name="audioInput1" value="" placeholder="Answer" tabindex="1" required>
+              </div>
+            <label for="audioInput2" class="col-sm-4 col-form-label text-center" id="audioLabel2">🎵 <kbd>第二首歌 Song 2</kbd> 🎶</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="audioInput2" name="audioInput2" value="" placeholder="Answer" tabindex="2" required>
+              </div>
+            <label for="audioInput3" class="col-sm-4 col-form-label text-center" id="audioLabel3">🎵 <kbd>第三首歌 Song 3</kbd> 🎶</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="audioInput3" name="audioInput3" value="" placeholder="Answer" tabindex="3" required>
+              </div>
+            <label for="audioInput4" class="col-sm-4 col-form-label text-center" id="audioLabel4">🎵 <kbd>第四首歌 Song 4</kbd> 🎶</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="audioInput4" name="audioInput4" value="" placeholder="Answer" tabindex="4" required>
+              </div>
+            <label for="audioInput5" class="col-sm-4 col-form-label text-center" id="audioLabel5">🎵 <kbd>第五首歌 Song 5</kbd> 🎶</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="audioInput5" name="audioInput5" value="" placeholder="Answer" tabindex="5" required>
+              </div>
+            <div class="container">
+              <input class="btn btn-primary col-sm-2 mt-5" type="submit" value="Submit"/>
+            </div>
           </form>
           {% elif mission.id == 3 %}
           <br>
@@ -120,91 +144,40 @@
           {% elif mission.id == 4 %}
           <br>
           <br>
-          <img src="{% static 'game/crossword/Crossword.jpeg' %}" style="max-width: 100%; height: auto;" alt="Crossword">
+          <div class="container">
+            <div id="crossword-img" class="row" style="text-align: center; display: block;">
+              <img src="{% static 'game/crossword/Crossword.jpeg' %}" style="max-width: 100%; height: auto;" alt="Crossword">
+              <div class="container">
+                <form class="mt-5" method="POST">
+                  {% csrf_token %}
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ1" name="crosswordQ1" placeholder="id**li*" tabindex="1" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ2" name="crosswordQ2" placeholder="s**i****r*n**" tabindex="2" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ3" name="crosswordQ3" placeholder="q*ix*ti*" tabindex="3" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ4" name="crosswordQ4" placeholder="*lo*k*n*piel" tabindex="4" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ5" name="crosswordQ5" placeholder="**os" tabindex="5" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ6" name="crosswordQ6" placeholder="m*s***s*p*i" tabindex="6" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ7" name="crosswordQ7" placeholder="s**a*f**o" tabindex="7" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ8" name="crosswordQ8" placeholder="***t*g" tabindex="8" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-3" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ9" name="crosswordQ9" placeholder="****ph****l*a" tabindex="9" required>
+                  <input class="form-control form-control-sm text-center col-sm-4 mb-5" style="display: block; margin-right: auto; margin-left: auto;" id="crosswordQ10" name="crosswordQ10" placeholder="l*r*nx" tabindex="10" required>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
           {% elif mission.id == 5 %}
           <br>
-          <!-- <img src="{% static 'mission_files/GoogleMap.jpeg' %}" style="max-width: 100%; height: auto;" alt="GoogleMap"> -->
-          <div style="padding:55% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/418081125" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+          <!-- <div style="padding:55% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/418081125" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script> -->
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zSZ2-9T5hEM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
           <br>
           <br>
-          <button class="btn btn-primary btn-sm col-sm-3 mb-4" onclick="swapLang()">
+          <button class="btn btn-primary btn-sm col-sm-3 mb-4" id="changeLang">
             Change Language
           </button>
-          <form method="POST" class="form-group row">
+          <form method="POST" class="form-group row" id="carcam-form">
             {% csrf_token %}
-            <label for="inputQ1" class="col-sm-10 col-form-label text-left" id="labelQ1" style="font-size: x-large;">1) <kbd>0:30 - 0:39</kbd> 左边有多少个架构相似的建筑物？</label>
-              {% if inputQ1_invalid %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-invalid" id="inputQ1" name="inputQ1" value="{{ inputQ1 }}" placeholder="Answer" tabindex="1" required>
-              </div>
-              {% elif inputQ1_invalid == False %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-valid" id="inputQ1" name="inputQ1" value="{{ inputQ1 }}" placeholder="Answer" tabindex="1" required>
-              </div>
-              {% else %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="inputQ1" name="inputQ1" value="{{ inputQ1 }}" placeholder="Answer" tabindex="1" required>
-              </div>
-              {% endif %}
-            <label for="inputQ2" class="col-sm-10 col-form-label text-left" id="labelQ2" style="font-size: x-large;">2) <kbd>1:18</kbd> 啰哩前面的车是什么颜色？</label>
-              {% if inputQ2_invalid %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-invalid" id="inputQ2" name="inputQ2" value="{{ inputQ2 }}" placeholder="Answer" tabindex="2" required>
-              </div>
-              {% elif inputQ2_invalid == False %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-valid" id="inputQ2" name="inputQ2" value="{{ inputQ2 }}" placeholder="Answer" tabindex="2" required>
-              </div>
-              {% else %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="inputQ2" name="inputQ2" value="{{ inputQ2 }}" placeholder="Answer" tabindex="2" required>
-              </div>
-              {% endif %}
-            <label for="inputQ3" class="col-sm-10 col-form-label text-left" id="labelQ3" style="font-size: x-large;">3) <kbd>1:27</kbd> 迎面而来的车是什么颜色？</label>
-              {% if inputQ3_invalid %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-invalid" id="inputQ3" name="inputQ3" value="{{ inputQ3 }}" placeholder="Answer" tabindex="3" required>
-              </div>
-              {% elif inputQ3_invalid == False %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-valid" id="inputQ3" name="inputQ3" value="{{ inputQ3 }}" placeholder="Answer" tabindex="3" required>
-              </div>
-              {% else %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="inputQ3" name="inputQ3" value="{{ inputQ3 }}" placeholder="Answer" tabindex="3" required>
-              </div>
-              {% endif %}
-            <label for="inputQ4" class="col-sm-10 col-form-label text-left" id="labelQ4" style="font-size: x-large;">4) 第一个拐的方向</label>
-              {% if inputQ4_invalid %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-invalid" id="inputQ4" name="inputQ4" value="{{ inputQ4 }}" placeholder="Answer" tabindex="4" required>
-              </div>
-              {% elif inputQ4_invalid == False %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-valid" id="inputQ4" name="inputQ4" value="{{ inputQ4 }}" placeholder="Answer" tabindex="4" required>
-              </div>
-              {% else %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="inputQ4" name="inputQ4" value="{{ inputQ4 }}" placeholder="Answer" tabindex="4" required>
-              </div>
-              {% endif %}
-            <label for="inputQ5" class="col-sm-10 col-form-label text-left" id="labelQ5" style="font-size: x-large;">5) <kbd>1:26</kbd> 左边的铁门是什么颜色？</label>
-              {% if inputQ5_invalid %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-invalid" id="inputQ5" name="inputQ5" value="{{ inputQ5 }}" placeholder="Answer" tabindex="5" required>
-              </div>
-              {% elif inputQ4_invalid == False %}
-              <div class="col-sm-2">
-                <input type="text" class="form-control is-valid" id="inputQ5" name="inputQ5" value="{{ inputQ5 }}" placeholder="Answer" tabindex="5" required>
-              </div>
-              {% else %}
-              <div class="col-sm-2 ">
-                <input type="text" class="form-control" id="inputQ5" name="inputQ5" value="{{ inputQ5 }}" placeholder="Answer" tabindex="5" required>
-              </div>
-              {% endif %}
-              <div class="container">
-                <input class="btn btn-primary col-sm-2 mt-5" type="submit" value="Submit" tabindex="6"/>
-              </div>
           </form>
           {% elif mission.id == 6 %}
           <br>
@@ -217,67 +190,242 @@
       </div>
     </div>
     <script>
-      function swapLang() {
-        var q1 = document.getElementById("labelQ1");
-        var q2 = document.getElementById("labelQ2");
-        var q3 = document.getElementById("labelQ3");
-        var q4 = document.getElementById("labelQ4");
-        var q5 = document.getElementById("labelQ5");
-        var i1 = document.getElementById("inputQ1");
-        var i2 = document.getElementById("inputQ2");
-        var i3 = document.getElementById("inputQ3");
-        var i4 = document.getElementById("inputQ4");
-        var i5 = document.getElementById("inputQ5");
+      {% if mission.id == 2 %}
+      window.addEventListener('DOMContentLoaded', function() {
+          {% autoescape off %}
+          {% if SongAnswers == None %}
+          {% else %}
+          var SongAnswers = {{ SongAnswers }};
+          var SongResults = {{ SongResults }};
+          {% endif %}
+          {% endautoescape %}
 
-        if (q1.innerHTML === "1) <kbd>0:30 - 0:39</kbd> 左边有多少个架构相似的建筑物？") {
-          q1.innerHTML = "1) <kbd>0:30 - 0:39</kbd> How many buildings are there that looks similarly to each other on the left side of the video?";
-          q1.setAttribute("style", "font-size: normal;");
-          i1.setAttribute("class", "form-control form-control-sm");
-        } else {
-          q1.innerHTML = "1) <kbd>0:30 - 0:39</kbd> 左边有多少个架构相似的建筑物？";
-          q1.setAttribute("style", "font-size: x-large;");
-          i1.setAttribute("class", "form-control");
+          for (var i = 0; i < SongResults.length; i++) {
+            if (SongResults[i] == "False") {
+              document.getElementById('audioInput' + (i+1).toString()).classList.add("is-invalid");
+            } else if (SongResults[i] == "True") {
+              document.getElementById('audioInput' + (i+1).toString()).classList.add("is-valid");
+            }
+            document.getElementById('audioInput' + (i+1).toString()).value = SongAnswers[i];
+          }
+        });
+      {% endif %}
+
+      {% if mission.id == 4 %}
+      window.addEventListener('DOMContentLoaded', function() {
+          {% autoescape off %}
+          {% if CrosswordAnswers == None %}
+          {% else %}
+          var CrosswordResults = {{ CrosswordResults }};
+          var CrosswordAnswers = {{ CrosswordAnswers }};
+          {% endif %}
+          {% endautoescape %}
+
+          for (var i = 0; i < CrosswordResults.length; i++) {
+            if (CrosswordResults[i] == "False") {
+              document.getElementById('crosswordQ' + (i+1).toString()).classList.add("is-invalid");
+            } else if (CrosswordResults[i] == "True") {
+              document.getElementById('crosswordQ' + (i+1).toString()).classList.add("is-valid");
+            }
+            document.getElementById('crosswordQ' + (i+1).toString()).value = CrosswordAnswers[i];
+          }
+        });
+
+      // function loadCrossword() {
+      //   document.getElementById('crossword-img').setAttribute("style", "display: block;");
+      //   document.getElementById('loadCrosswordBtn').setAttribute("style", "display: none;")
+      // }
+
+      // function startCrossword () {
+      //     class CrosswordRow {
+      //         constructor(answer, typedAnswer) {
+      //             this.answer = answer;
+      //             this.typedAnswer = typedAnswer;
+      //         }
+      //     }
+
+      //     var row0 = new CrosswordRow("I", "");
+      //     var row1 = new CrosswordRow("SD", "");
+      //     var row2 = new CrosswordRow("QUIXOTICY", "");
+      //     var row3 = new CrosswordRow("HL", "");
+      //     var row4 = new CrosswordRow("GLOCKENSPIEL", "");
+      //     var row5 = new CrosswordRow("ZI", "");
+      //     var row6 = new CrosswordRow("EOC", "");
+      //     var row7 = new CrosswordRow("MISSISSIPPIS", "");
+      //     var row8 = new CrosswordRow("DHG", "");
+      //     var row9 = new CrosswordRow("OZRR", "");
+      //     var row10 = new CrosswordRow("SPARAPHERNALIA", "");
+      //     var row11 = new CrosswordRow("FNF", "");
+      //     var row12 = new CrosswordRow("TIF", "");
+      //     var row13 = new CrosswordRow("ILARYNXI", "");
+      //     var row14 = new CrosswordRow("GT", "");
+      //     var row15 = new CrosswordRow("O", "");
+
+      //     var Crossword = [row0, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11, row12, row13, row14, row15];
+
+
+      //     var numberChecker = 0;
+
+
+      //     function skipToNext(elem) {
+      //         var nextElemIndex = parseFloat(elem.getAttribute('tabindex')) + 1;
+      //         document.querySelector('[tabindex="' + nextElemIndex + '"]').focus();
+      //     }
+
+
+      //     document.getElementById("submit_crossword").addEventListener("click", function (e) {
+      //         // Prevent webpage from refreshing
+      //         e.preventDefault();
+
+
+      //         numberChecker = 0;
+      //         // Loop through each rows
+      //         for (var j = 0; j < Crossword.length; j++) {
+      //             Crossword[j].typedAnswer = "";
+
+      //             // Loop through each columns
+      //             for (var i = 0; i < Crossword[j].answer.length; i++) {
+      //                 // Adding value of each columns to Crossword.typedAnswer
+      //                 Crossword[j].typedAnswer += document.getElementById("cross-row" + j.toString()).querySelectorAll("input")[i].value.toUpperCase();
+      //             }
+
+      //             // Check if typedAnswer is equal to Answer
+      //             if (Crossword[j].typedAnswer === Crossword[j].answer) {
+      //                 // If equal, good answer(remove bad, add good)
+      //                 document.getElementById("cross-row" + j.toString()).classList.remove("bad");
+      //                 document.getElementById("cross-row" + j.toString()).classList.add("good");
+      //                 // Increment numberChecker
+      //                 numberChecker++;
+      //             } else {
+      //                 // If not equal, bad answer(remove good, add bad)
+      //                 document.getElementById("cross-row" + j.toString()).classList.remove("good");
+      //                 document.getElementById("cross-row" + j.toString()).classList.add("bad");
+      //             }
+      //         }
+      //         // Loop through each rows
+      //         var pass = true;
+
+      //         for (var j = 0; j < Crossword.length; j++) {
+      //           if (document.getElementById("cross-row" + j.toString()).classList.contains("good")) {
+      //             continue;
+      //           } else {
+      //             pass = false;
+      //           }
+      //         }
+
+      //         if (pass == false) {
+      //           document.getElementById("result").innerHTML = 'Fail';
+      //         } else {
+      //           document.getElementById("result").innerHTML = 'Pass';
+      //         }
+      //     });
+      // }
+      {% endif %}
+              
+      {% if mission.id == 5 %}
+      // Setting variables
+      {% autoescape off %}
+      var CarcamQuesChi = {{ CarcamQuesChi }};
+      var CarcamQuesEng = {{ CarcamQuesEng }};
+      var Timecode = {{ Timecode }};
+
+      {% if CarcamAnswers == None %}
+      {% else %}
+      var CarcamResults = {{ CarcamResults }};
+      var CarcamAnswers = {{ CarcamAnswers }};
+      {% endif %}
+      {% endautoescape %}
+
+      document.addEventListener('DOMContentLoaded', () => {
+
+        // Create 20 questions
+        for (var i=0; i<CarcamQuesChi.length; i++) {
+          const question = document.createElement('label');
+          const div = document.createElement('div');
+          const input = document.createElement('input');
+
+          // Setting attributes of input
+          question.setAttribute("id", "carcam-question");
+          question.setAttribute("for", "inputQ" + (i+1).toString());
+          question.setAttribute("style", "font-size: x-large;");
+          question.classList.add("col-sm-10", "col-form-label", "text-left");
+          if (Timecode[i] == "")
+            question.innerHTML = `${(i+1)}) ${CarcamQuesChi[i]}`;
+          else
+            question.innerHTML = `${(i+1)}) <kbd>${Timecode[i]}</kbd> ${CarcamQuesChi[i]}`;
+
+          // Setting attributes of div
+          div.classList.add("col-sm-2");
+
+          // Setting attributes of input
+          input.setAttribute("id", "carcam-answer");
+          input.setAttribute("name", "inputQ" + (i+1).toString());
+          input.setAttribute("type", "text");
+          input.setAttribute("placeholder", "Answer");
+          input.setAttribute("tabindex", (i+1).toString());
+          input.setAttribute("required", "");
+          // input.setAttribute("value", `${Answers[i]}`);
+          input.classList.add("form-control");
+
+          // Adding inputs into the div
+          div.append(input)
+
+          document.querySelector("#carcam-form").append(question);
+          document.querySelector("#carcam-form").append(div);
         }
 
-        if (q2.innerHTML === "2) <kbd>1:18</kbd> 啰哩前面的车是什么颜色？") {
-          q2.innerHTML = "2) <kbd>1:18</kbd> What colour is the vehicle in front of the lorry? ";
-          q2.setAttribute("style", "font-size: normal;");
-          i2.setAttribute("class", "form-control form-control-sm");
-        } else {
-          q2.innerHTML = "2) <kbd>1:18</kbd> 啰哩前面的车是什么颜色？";
-          q2.setAttribute("style", "font-size: x-large;");
-          i2.setAttribute("class", "form-control");
-        }
+        // Create Submit Button
+        const container = document.createElement('div');
+        const submit = document.createElement('input');
 
-        if (q3.innerHTML === "3) <kbd>1:27</kbd> 迎面而来的车是什么颜色？") {
-          q3.innerHTML = "3) <kbd>1:27</kbd> : What is the colour of the car at the opposite of the road?";
-          q3.setAttribute("style", "font-size: normal;");
-          i3.setAttribute("class", "form-control form-control-sm");
-        } else {
-          q3.innerHTML = "3) <kbd>1:27</kbd> 迎面而来的车是什么颜色？";
-          q3.setAttribute("style", "font-size: x-large;");
-          i3.setAttribute("class", "form-control");
-        }
+        // Setting the attributes 
+        container.classList.add("container");
+        submit.setAttribute("type", "submit");
+        submit.setAttribute("value", "Submit");
+        submit.setAttribute("tabindex", (CarcamQuesChi.length + 1).toString());
+        submit.classList.add("btn", "btn-primary", "col-sm-2", "mt-5");
 
-        if (q4.innerHTML === "4) 第一个拐的方向") {
-          q4.innerHTML = "4) The first turn was towards which direction? ";
-          q4.setAttribute("style", "font-size: normal;");
-          i4.setAttribute("class", "form-control form-control-sm");
-        } else {
-          q4.innerHTML = "4) 第一个拐的方向";
-          q4.setAttribute("style", "font-size: x-large;");
-          i4.setAttribute("class", "form-control");
-        }
+        container.append(submit);
+        document.querySelector("#carcam-form").append(container);
 
-        if (q5.innerHTML === "5) <kbd>1:26</kbd> 左边的铁门是什么颜色？") {
-          q5.innerHTML = "5) <kbd>1:26</kbd>  What is the colour of the gate on the left? ";
-          q5.setAttribute("style", "font-size: normal;");
-          i5.setAttribute("class", "form-control form-control-sm");
-        } else {
-          q5.innerHTML = "5) <kbd>1:26</kbd> 左边的铁门是什么颜色？";
-          q5.setAttribute("style", "font-size: x-large;");
-          i5.setAttribute("class", "form-control");
+        var CarcamInputs = document.querySelectorAll('#carcam-answer');
+
+        // Checking for correct/incorrect answers
+        for(var i=0; i<CarcamResults.length; i++) {
+          if (CarcamResults[i] == "False") {
+            CarcamInputs[i].classList.add("is-invalid");
+          } else if (CarcamResults[i] == "True") {
+            CarcamInputs[i].classList.add("is-valid");
+          }
+          CarcamInputs[i].value = CarcamAnswers[i];
         }
-      }
+      })
+
+      // Change Language on button click
+      document.getElementById("changeLang").addEventListener('click', () => {
+        for (var i=0; i<CarcamQuesChi.length; i++) {
+          const questions = document.querySelectorAll("#carcam-question");
+          const inputs = document.querySelectorAll("#carcam-answer");
+
+          if (questions[i].innerHTML == `${(i+1)}) ${CarcamQuesChi[i]}`) {
+            questions[i].innerHTML = `${(i+1)}) ${CarcamQuesEng[i]}`;
+            questions[i].setAttribute("style", "font-size: normal;");
+            inputs[i].setAttribute("class", "form-control form-control-sm");
+          } else if (questions[i].innerHTML == `${(i+1)}) <kbd>${Timecode[i]}</kbd> ${CarcamQuesChi[i]}`) {
+            questions[i].innerHTML = `${(i+1)}) <kbd>${Timecode[i]}</kbd> ${CarcamQuesEng[i]}`;
+            questions[i].setAttribute("style", "font-size: normal;");
+            inputs[i].setAttribute("class", "form-control form-control-sm");
+          } else if (questions[i].innerHTML == `${(i+1)}) <kbd>${Timecode[i]}</kbd> ${CarcamQuesEng[i]}`) {
+            questions[i].innerHTML = `${(i+1)}) <kbd>${Timecode[i]}</kbd> ${CarcamQuesChi[i]}`;
+            questions[i].setAttribute("style", "font-size: x-large;");
+            inputs[i].setAttribute("class", "form-control");
+          } else {
+            questions[i].innerHTML = `${(i+1)}) ${CarcamQuesChi[i]}`;
+            questions[i].setAttribute("style", "font-size: x-large;");
+            inputs[i].setAttribute("class", "form-control");
+          }
+        }
+      })
+      {% endif %}
     </script>
 {% endblock %}

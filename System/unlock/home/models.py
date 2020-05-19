@@ -55,10 +55,12 @@ class Inspector(models.Model):
     pastoral_cg = models.CharField(max_length=200)
     points = models.IntegerField(default=0)
     m1 = models.BooleanField(verbose_name='m1 completed', default=False)
-    m2 = models.BooleanField(verbose_name='m2 completed', default=False)
+    m2_a = models.BooleanField(verbose_name='m2_a(guess song) completed', default=False)
+    m2_b = models.BooleanField(verbose_name='m2_b(translate song) completed', default=False)
     m3 = models.BooleanField(verbose_name='m3 completed', default=False)
     m4 = models.BooleanField(verbose_name='m4 completed', default=False)
     m5 = models.BooleanField(verbose_name='m5 completed', default=False)
+    m5_trials = models.IntegerField(verbose_name='m5 trials', default=10)
     m6 = models.BooleanField(verbose_name='m6 completed', default=False)
 
     def __str__(self):

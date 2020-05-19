@@ -26,7 +26,7 @@ class InspectorAdmin(admin.ModelAdmin):
         ('Pastoral Details',    {'fields': [
          'satellite', 'pastoral_team', 'pastoral_cg']}),
         ('Mission Progress',    {'fields': [
-         'm1', 'm2', 'm3', 'm4', 'm5', 'm6']})
+         'm1', 'm2_a', 'm2_b', 'm3', 'm4', 'm5', 'm5_trials', 'm6']})
     ]
     list_display = ('user', 'name', 'phone_number', 'satellite', 'pastoral_cg')
     list_filter = ['satellite']

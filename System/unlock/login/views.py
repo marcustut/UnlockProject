@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth as django_auth
 from django.contrib import messages 
-import pyrebase
+# import pyrebase
 
 from .forms import CreateUserForm
 
@@ -19,8 +19,8 @@ config = {
     'measurementId': "G-3PL9VWKPM1"
 }
 
-firebase = pyrebase.initialize_app(config)
-auth = firebase.auth()
+# firebase = pyrebase.initialize_app(config)
+# auth = firebase.auth()
 
 # Create your views here.
 

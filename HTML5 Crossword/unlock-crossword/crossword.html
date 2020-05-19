@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Unlock Crossword</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="logic.js"></script>
+</head>
+
+<body bgcolor="lightblue">
+  <button onclick="startGame()">Start Game</button>
+  <p style="font-size:30px"><strong>Unlock Crossword</strong></p>
+  <div id="crossword reset-this">
+    <div id="cross-row0">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="1" />
+    </div>
+
+    <div class="cross-row" id="cross-row1">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="2" />
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="3" />
+    </div>
+
+    <div class="cross-row" id="cross-row2">
+
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="4" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="5" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="6" data-type="hightlight" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="7" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="8" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="9" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="10" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="11" />
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="12" />
+    </div>
+
+    <div class="cross-row" id="cross-row3">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="13" />
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="14" data-type="hightlight" />
+    </div>
+
+    <div class="cross-row" id="cross-row4">
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="15" data-type="hightlight" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="16" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="17" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="18" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="19" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="20" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="21" data-type="hightlight" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="22" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="23" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="24" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="25" />
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="26" />
+    </div>
+
+    <div class="cross-row" id="cross-row5">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="27" data-type="hightlight" />
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="28" />
+    </div>
+
+    <div class="cross-row" id="cross-row6">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="29" />
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="30" data-type="hightlight" />
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="31" />
+    </div>
+
+    <div class="cross-row" id="cross-row7">
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="32"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="33"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="34"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="35"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="36"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="37"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="38"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="39"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="40"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="41"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="42"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="43"/>
+    </div>
+
+    <div class="cross-row" id="cross-row8">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="44"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="45"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="46"/>
+    </div>
+
+    <div class="cross-row" id="cross-row9">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="47"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="48"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="49"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="50"/>
+    </div>
+
+    <div class="cross-row" id="cross-row10">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="51"/>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="52"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="53"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="54"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="55"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="56"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="57"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="58"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="59"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="60"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="61"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="62"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="63"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="64"/>
+    </div>
+
+    <div class="cross-row" id="cross-row11">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="65"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="66"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="67"/>
+    </div>
+
+    <div class="cross-row" id="cross-row12">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="68"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="69"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="70"/>
+    </div>
+
+    <div class="cross-row" id="cross-row13">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="71"/>
+      <span class="empty-letter"></span>
+      <span class="row-number"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="72"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="73"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="74"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="75"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="76"/>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="77"/>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="78"/>
+    </div>
+
+    <div class="cross-row" id="cross-row14">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="79"/>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="80"/>
+    </div>
+
+    <div class="cross-row" id="cross-row15">
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <span class="empty-letter"></span>
+      <input class="crossword-letter" type="text" minlength="1" maxlength="1" pattern="^[A-Za-z]{1}$"
+        required="required" value="" tabindex="81"/>
+    </div>
+
+    <button id="submit_crossword">CHECK CROSSWORD</button>
+  </div>
+
+
+  <div id="questions">
+    <ul>
+      <li class="aaa">(across) Attributes for Columns (down) Area that can be used to draw graphics via JavaScript</li>
+      <li>(down) Sound Content</li>
+      <li>(across) Clickable element</li>
+      <li>(down) Can contain tr th and td</li>
+      <li>(across) Tag to define an image</li>
+      <li>(across) Tag for MP4 WebM and Ogg</li>
+      <li>(down) A Division or section</li>
+      <li>(across) Inline Style for Elements</li>
+      <li>(across) Declaration processed before code is executed</li>
+    </ul>
+
+  </div>
+
+
+
+</body>
+
+</html>

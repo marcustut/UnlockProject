@@ -1,0 +1,80 @@
+{% extends "home/base.html" %}
+
+{% block title %}Mission{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+            <h1><b>HAHA! It's not finish yet😈</b></h1>
+            <h3>There's a part 2 to this Mission</h3><br>
+            <h4><b><u>Instructions</u></b></h4>
+            <p>1. blah blah blah</p>
+        </div>
+        <div class="container-fluid text-center mt-5">
+          <p class="">👇 <kbd>Upload your audio files here</kbd> 👇</p>
+          <form method="POST" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">泰语 Thai</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">德语 German</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">日语 Japanese</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">俄语 Russian</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">淡米尔文 Tamil</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">葡萄牙文 Portuguese</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">韩语 Korean</label>
+            </div>
+            <div class="custom-file col-sm-3 mb-2 mr-1">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label text-left" for="customFile">法文 French</label>
+            </div>
+            <div class="container">
+              <input class="btn btn-primary col-sm-2 mt-3" type="submit" value="Submit"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      history.pushState(null, null, null)
+      window.addEventListener('popstate', function() {
+        history.pushState(null, null, null);
+      })
+
+      var fileInput = document.querySelectorAll('.custom-file-input');
+      
+      for (var j = 0; j < fileInput.length; j++) {
+        fileInput[j].addEventListener('change', function() {
+          for (var i = 0; i < document.querySelectorAll("#customFile").length; i++) {
+            if (document.querySelectorAll("#customFile")[i].files[0] == undefined)
+              continue;
+            else {
+              var fileName = document.querySelectorAll("#customFile")[i].files[0].name;
+              document.querySelectorAll(".custom-file-label")[i].innerHTML = fileName;
+            }
+          }
+        })
+      }
+
+    </script>
+{% endblock %}
