@@ -1,0 +1,22 @@
+{% extends "home/base.html" %}
+
+{% block title %}Error 404{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+            <h1><b>Oh No!</b></h1>
+            <h3>The page you're looking for is not found😢</h3><br>
+            <p>Please seek for help in our Discord Server if you think this is incorrect.</p>
+            <p><kbd>Error Code - 404</kbd></p>
+            <div class="container mt-4">
+                <a href="{% url 'home:home' %}" class="btn btn-primary btn-sm">
+                    Return to Home Page
+                </a>
+                <a href="https://discord.gg/7mgxSBc" class="btn btn-primary btn-sm ml-2"><i class="fab fa-discord mr-2 mt-1"></i>Go to Discord</a>
+            </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

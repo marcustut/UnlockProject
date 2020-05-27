@@ -8,10 +8,16 @@
         <div class="container-fluid text-center">
             <h1><b>Oh No!</b></h1>
             <h3>There's an issue submitting your answers😢</h3><br>
-            <p>The mission you have submitted is -> <kbd>{{ mission.mission_title_chi }} {{ mission.mission_title_eng }}</kbd><br>Please try uploading again or seek for help at our Facebok Page.</p>
-            <a href="https://www.facebook.com/ywunlock2020/" class="btn btn-primary btn-sm">
-                Go to Facebook
+            <p>The mission you have submitted is -> <kbd>{{ mission.mission_title_chi }} {{ mission.mission_title_eng }}</kbd><br>Please try uploading again or seek for help at our Discord Server.</p>
+            {% for message in messages %}
+            {% autoescape off %}
+            {{ message }}
+            {% endautoescape %}
+            {% endfor %}
+            <a href="{% url 'home:mission' %}" class="btn btn-primary btn-sm">
+                Go back to Mission
             </a>
+            <a href="https://discord.gg/7mgxSBc" class="btn btn-primary btn-sm ml-3"><i class="fab fa-discord mr-2 mt-1"></i>Go to Discord</a>
         </div>
       </div>
     </div>

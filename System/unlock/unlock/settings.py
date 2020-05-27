@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'jzb!9f$^@&mjovz!9ys9o8whrod8_mxr%ig3r4gia4&*pkqo5$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'infoboard.apps.InfoboardConfig',
     'control.apps.ControlConfig',
+    'api.apps.ApiConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +96,8 @@ if os.getenv('GAE_APPLICATION', None):
             'PORT': '5432',
         }
     }
+    # Redirect HTTP to HTTPS
+    SECURE_SSL_REDIRECT = True
 else:
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
@@ -152,16 +156,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = 'https://storage.cloud.google.com/unlock2020.appspot.com/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "boot"),
+]
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, "media"),
 ]
 
 # Google Cloud Storage Settings
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'unlock2020.appspot.com'
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'credentials/cloudstorage.json')
 )
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+MEDIA_ROOT = '/media/'
+STATIC_ROOT = '/static/'
+
+GS_URL = 'https://storage.cloud.google.com/unlock2020.appspot.com'
+MEDIA_URL = GS_URL + MEDIA_ROOT
+STATIC_URL = GS_URL + STATIC_ROOT

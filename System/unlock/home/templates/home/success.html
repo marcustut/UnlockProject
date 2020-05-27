@@ -5,7 +5,14 @@
 {% block content %}
     <div class="container">
       <div class="jumbotron active-mission mb-5">
-        <div class="container-fluid text-center">
+        {% if mission.id == 1 %}
+        <div id="yt-player" class="embed-responsive embed-responsive-16by9">
+          <div class="embed-responsive-item">
+            <div id="mission1-video"></div>
+          </div>
+        </div>
+        {% endif %}
+        <div id="main-container" class="container-fluid text-center">
             <h1><b>Congratulations!</b></h1>
             <h3>Your answer is correct.</h3><br>
             <p>The mission you have submitted is -> <kbd>{{ mission.mission_title_chi }} {{ mission.mission_title_eng }}</kbd><br>Please seek for help in our Discord Server if there's any enquiries.</p>
@@ -14,19 +21,85 @@
             </a>
             <a href="https://discord.gg/7mgxSBc" class="btn btn-primary btn-sm ml-3"><i class="fab fa-discord mr-2 mt-1"></i>Go to Discord</a>
         </div>
-        <div class="container-fluid text-center mt-5">
-          {% if mission.id == 1 %}
+        {% if mission.id == 1 %}
+        <div id="sub-container" class="container-fluid text-center mt-5">
           <p class="">Clues that you've been looking for 👇</p>
           <a class="btn btn-light btn-sm" href="https://www.instagram.com/emily.siia/" target="_blank"><i class="fab fa-instagram mr-2 mt-1"></i>emily.siia</a>
-          {% endif %}
         </div>
+        <div class="container">
+          <div class="row">
+            <div class="col text-center">
+              <button type="button" id="next-button" class="btn btn-secondary mt-5" onclick="showCongratulations()" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
-
+    
     <script>
       history.pushState(null, null, null)
       window.addEventListener('popstate', function() {
         history.pushState(null, null, null);
       })
+
+      {% if mission.id == 1 %}
+      // Disable the messages first
+      document.getElementById("main-container").setAttribute("style", "display: none;")
+      document.getElementById("sub-container").setAttribute("style", "display: none;")
+      
+      // Load Youtube API asynchronously
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // This function creates an <iframe> (and YouTube player)
+      // after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('mission1-video', {
+          videoId: 'ZlrKmb8MKWY',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // The API calls this function when the player's state changes.
+      // the player should enable button when the video is finished.
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          document.querySelector("#next-button").classList.remove("disabled");
+          document.querySelector("#next-button").disabled = false;
+        }
+      }
+
+      function showCongratulations() {
+        ytplayer = document.querySelector("#yt-player");
+        mainCont = document.querySelector("#main-container");
+        subCont = document.querySelector("#sub-container");
+        button = document.querySelector("#next-button");
+
+        if (button.innerText == "Next") {
+          ytplayer.setAttribute("style", "display: none;");
+          mainCont.setAttribute("style", "");
+          subCont.setAttribute("style", "");
+          button.innerText = "Go Back";
+        } else {
+          ytplayer.setAttribute("style", "");
+          mainCont.setAttribute("style", "display: none;");
+          subCont.setAttribute("style", "display: none;");
+          button.innerText = "Next";
+        }
+      }
+      {% endif %}
     </script>
 {% endblock %}

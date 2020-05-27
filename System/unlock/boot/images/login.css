@@ -6,7 +6,7 @@
 {% load static %}
 {% autoescape off %}
 body {
-  background: black url("{% static 'images/unlockBG.jpg' %}");
+  background: black url("{% static 'images/MAIN_LOGIN.jpg' %}");
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   color: white;

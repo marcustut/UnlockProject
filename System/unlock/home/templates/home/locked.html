@@ -22,7 +22,7 @@
                 Go back to Mission
             </a>
             {% elif condition == 'ran out of trials' %}
-                {% if mission.id == 5 %}
+                {% if mission.id == 1 or mission.id == 5 %}
                 <h1><b>Mission Locked</b></h1>
                 <h3>Dear <b>{{ request.user.username }}</b>, you have ran out of trials for this mission.</h3><br>
                 <p>You have only 10 trials, you have used <kbd>{{ numTrials }}/10</kbd><br>Please seek for help in our Discord Server if you think this is incorrect.</p>

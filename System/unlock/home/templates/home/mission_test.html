@@ -5,40 +5,25 @@
 {% block content %}
       <div class="container">
         <div class="row">
-        {% for mission in missions|slice:":6" %}
-          {% if mission.id == 1 %}
+        {% for mission in missions|slice:":3" %}
           <div class="col-sm">
-              {% if user.m1 %}
-              <div class="jumbotron completed-mission" style="text-align: center;">
-              {% elif now > mission.start_time and now < mission.end_time %}
               <div class="jumbotron active-mission" style="text-align: center;">
-              {% elif mission.end_time < now %}
-              <div class="jumbotron failed-mission" style="text-align: center;">
-              {% else %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-              {% endif %}
                 <h2 class=""><strong>{{ mission.mission_title_chi }}</strong></h2>
                 <h4 class="">{{ mission.mission_title_eng }}</h2><br>
                 <a class="btn btn-secondary" href="{% url 'home:submit' mission_id=mission.id %}" role="button">Challenge Now</a>
               </div>
           </div>
-          {% elif mission.id == 5 %}
+        {% endfor %}
+        </div>
+        <div class="row">
+        {% for mission in missions|slice:"3:6" %}
           <div class="col-sm">
-              {% if user.m5 %}
-              <div class="jumbotron completed-mission" style="text-align: center;">
-              {% elif now > mission.start_time and now < mission.end_time %}
               <div class="jumbotron active-mission" style="text-align: center;">
-              {% elif mission.end_time < now %}
-              <div class="jumbotron failed-mission" style="text-align: center;">
-              {% else %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-              {% endif %}
                 <h2 class=""><strong>{{ mission.mission_title_chi }}</strong></h2>
                 <h4 class="">{{ mission.mission_title_eng }}</h2><br>
                 <a class="btn btn-secondary" href="{% url 'home:submit' mission_id=mission.id %}" role="button">Challenge Now</a>
               </div>
           </div>
-          {% endif %}
         {% endfor %}
         </div>
     </div>

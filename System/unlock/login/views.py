@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth as django_auth
 from django.contrib import messages 
+from django.views.decorators.csrf import csrf_exempt
 # import pyrebase
 
 from .forms import CreateUserForm
@@ -24,12 +25,14 @@ config = {
 
 # Create your views here.
 
+@csrf_exempt
 def login(request):
     if request.user.is_authenticated:
         return redirect('home:home')
     else:
         return render(request, 'login/login.html')
 
+@csrf_exempt
 def postsign(request):
     # email = request.POST.get('email')
     # password = request.POST.get('password')
@@ -66,6 +69,7 @@ def postsign(request):
             messages.error(request, 'Wrong HTTP Method - ' + request.method)
             return render(request, 'login/error.html')
 
+@csrf_exempt
 def logout(request):
     django_auth.logout(request)
     messages.info(request, "You are logged out.")

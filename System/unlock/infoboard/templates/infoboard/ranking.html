@@ -1,0 +1,102 @@
+{% extends "home/base.html" %}
+
+{% block title %}Ranking{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron active-mission mb-5">
+        <div class="container-fluid text-center">
+            <h1 class=""><b>Ranking</b></h5>
+
+            <div class="container mt-5">
+            {% if rankingEnabled %}
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Position</th>
+                                    <th scope="col">Inspector Group</th>
+                                    <th scope="col">Cluster/Satellites</th>
+                                    <th scope="col">Current Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rankBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
+                        <span style="font-size: large;"><kbd>latest as of {% now "SHORT_DATETIME_FORMAT" %}</kbd></span>
+                    </div>
+                </div>
+            {% else %}
+            <h4>This feature is currently disabled.</h4>
+            {% endif %}
+            </div>
+
+        </div>
+        <div class="container text-center">
+            <a href="https://discord.gg/bywdbey" class="btn btn-primary mt-5"><i class="fab fa-discord mr-2 mt-1"></i>Join us on Discord!</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    {% autoescape off %}
+    var group = {{ group }}
+    var satellite = {{ satellite }}
+    var points = {{ points }}
+    var rankIndex = {{ rankIndex }}
+    {% endautoescape %}
+    var satelliteName = {
+        KLMV:   "KL - Move",
+        KLV:    "KL - Voice",
+        KLH:    "KL - Heart",
+        KLMD:   "KL - Mind",
+        KLF:    "KL - Force",
+        KLS:    "KL - Strike",
+        PUC:    "Puchong",
+        STP:    "Setapak",
+        RW:     "Rawang",
+        PJ:     "Petaling Jaya",
+        USJ:    "USJ",
+        KLG:    "Klang",
+        KP:     "Kepong",
+        SB:     "Seremban",
+        SD:     "Serdang",
+        KJ:     "Kajang",
+        SGL:    "Sungai Long",
+    };
+
+    // Generate rows using JS
+    for (var i = 0; i < 30; i++) {
+        var tbody = document.querySelector("#rankBody");
+        
+        // Creating child elements
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        var tdGroup = document.createElement("td");
+        var tdSatellite = document.createElement("td");
+        var tdPoints = document.createElement("td");
+
+        // Setting attributes
+        th.setAttribute("scope", "row");
+
+        // Giving values
+        th.innerText = (rankIndex[i] + 1).toString();
+        tdGroup.innerText = group[i];
+        tdSatellite.innerText = satelliteName[satellite[i]];
+        tdPoints.innerText = points[i];
+
+        // Appending child elements to parents
+        tr.appendChild(th);
+        tr.appendChild(tdGroup);
+        tr.appendChild(tdSatellite);
+        tr.appendChild(tdPoints);
+        tbody.appendChild(tr);
+    }
+
+    </script>
+{% endblock %}

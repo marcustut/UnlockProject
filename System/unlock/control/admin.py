@@ -6,8 +6,8 @@ from .models import Control
 
 class ControlAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Game Control',    {'fields': ['game_time']})]
-    list_display = ('game_time', 'is_game_time_now')
+        ('Game Control',    {'fields': ['game_time', 'ranking_switcher']})]
+    list_display = ('game_time', 'ranking_switcher', 'is_game_time_now')
 
 
 admin.site.register(Control, ControlAdmin)

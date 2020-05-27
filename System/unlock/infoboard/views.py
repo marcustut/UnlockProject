@@ -18,6 +18,8 @@ from .credentials.twilio_cred import account_sid, auth_token
 
 # Models
 from .models import *
+from home.models import Inspector
+from control.models import Control
 
 # Global Variables
 client = Client(account_sid, auth_token)
@@ -129,3 +131,39 @@ class WhatsAppInfoboard(View):
 
 def infoboard(request):
     return render(request, 'infoboard/infoboard.html')
+
+def ranking(request):
+    # Check whether ranking is enabled
+    rankingEnabled = Control.objects.all()[0].ranking_switcher
+
+    # Taking all inspector sorted by highest points and reverse it
+    topInspector = Inspector.objects.order_by('points', '-m1_time_used', 'm1_trials', '-m2_a_time_used', '-m2_b_time_used', '-m3_time_used', '-m4_time_used', '-m5_time_used', 'm5_trials', '-m6_time_used')[::1]
+    topInspector.reverse()
+
+    sortedInspector = []
+
+    # Take only if 'UL' is present in name
+    for inspector in topInspector:
+        if inspector.name[:2] == 'UL':
+            sortedInspector.append(inspector)
+
+    group = [inspector.name for inspector in sortedInspector]
+    satellite = [inspector.satellite for inspector in sortedInspector]
+    points = [inspector.points for inspector in sortedInspector]
+
+    # Ranking algorithmn
+    sortedList = sorted(set(points))
+    sortedList.reverse()
+    rankdict = {v: k for k,v in enumerate(sortedList)}
+    ranked = [rankdict[a] for a in points]
+
+    # Context to be passed
+    context = {
+        'group': group,
+        'satellite': satellite,
+        'points': points,
+        'rankIndex': ranked,
+        'rankingEnabled': rankingEnabled,
+    }
+
+    return render(request, 'infoboard/ranking.html', context)

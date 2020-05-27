@@ -6,6 +6,7 @@ import datetime
 
 class Control(models.Model):
     game_time = models.DateTimeField('Game Time')
+    ranking_switcher = models.BooleanField(verbose_name='ranking turn on/off', default=False)
 
     def is_game_time_now(self):
         now = timezone.now()

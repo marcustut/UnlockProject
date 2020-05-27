@@ -9,7 +9,7 @@
           <div class="col-sm">
             {% if forloop.counter == 1 and user.m1 %}
               <div class="jumbotron completed-mission" style="text-align: center;">
-            {% elif forloop.counter == 2 and user.m2 %}
+            {% elif forloop.counter == 2 and user.m2_a and user.m2_b %}
               <div class="jumbotron completed-mission" style="text-align: center;">
             {% elif forloop.counter == 3 and user.m3 %}
               <div class="jumbotron completed-mission" style="text-align: center;">
@@ -51,30 +51,97 @@
           </div>
         {% endfor %}
         </div>
-
-        <!-- <div class="row mb-5">
-        {% for mission in missions|slice:"6:9" %}
-          <div class="col-sm">
-            {% if forloop.counter == 7 and user.m7 %}
-              <div class="jumbotron completed-mission" style="text-align: center;">
-            {% elif forloop.counter == 8 and user.m8 %}
-              <div class="jumbotron completed-mission" style="text-align: center;">
-            {% elif forloop.counter == 9 and user.m9 %}
-              <div class="jumbotron completed-mission" style="text-align: center;">
-            {% elif now > mission.start_time and now < mission.end_time %}
-              <div class="jumbotron active-mission" style="text-align: center;">
-            {% elif mission.end_time < now %}
-              <div class="jumbotron failed-mission" style="text-align: center;">
-            {% else %}
-              <div class="jumbotron locked-mission" style="text-align: center;">
-            {% endif %}
-                <h2 class=""><strong>{{ mission.mission_title }}</strong></h2>
-                <h4 class="">{{ mission.mission_title_eng }}</h2><br>
-                <a class="btn btn-secondary" href="{% url 'home:submit' mission_id=mission.id %}" role="button">Challenge Now</a>
-              </div>
-          </div>
-        {% endfor %}
-        </div> -->
     </div>
 
+    <script>
+      // Add countdown timer to locked mission
+      var lockedMission = document.querySelectorAll(".jumbotron");
+
+      for (var i=0; i<lockedMission.length; i++) {
+        var childElements = lockedMission[i].children;
+
+        if (!lockedMission[i].classList.contains("active-mission"))
+        for (var j=0; j<childElements.length; j++) {
+          childElements[j].style.display = "none";
+        }
+
+        // Add Countdown Timer
+        var displayTimer = document.createElement("p");
+        displayTimer.setAttribute("id", "countdown-timer-" + (i+1).toString());
+        displayTimer.setAttribute("style", "font-family: 'Press Start 2P', cursive; font-size: normal; color: black; margin-top: 12em;");
+        if (lockedMission[i].classList.contains("active-mission")) {
+          displayTimer.setAttribute("style", "font-family: 'Press Start 2P', cursive; font-size: normal; color: black; margin-top: 2.8em; visibility: hidden;");
+          var newP = document.createElement("p");
+          newP.setAttribute("style", "font-family: 'Press Start 2P', cursive; font-size: normal; color: black; margin-bottom: 2.8em; visibility: hidden;");
+          lockedMission[i].prepend(newP);
+        }
+        else if (!lockedMission[i].classList.contains("locked-mission")) {
+          displayTimer.setAttribute("style", "font-family: 'Press Start 2P', cursive; font-size: normal; color: black; margin-top: 12em; visibility: hidden;");
+          displayTimer.innerHTML = '--:--:--:--';
+        }
+        lockedMission[i].setAttribute("style", "text-align: center;");
+        lockedMission[i].appendChild(displayTimer);
+      }
+
+      var missionStartTime1 = new Date("May 23, 2020 21:06:00").getTime();
+      var missionStartTime2 = new Date("May 26, 2020 10:00:00").getTime();
+      var missionStartTime3 = new Date("May 29, 2020 20:30:00").getTime();
+      var missionStartTime4 = new Date("May 30, 2020 20:30:00").getTime();
+      var missionStartTime5 = new Date("June 2, 2020 10:00:00").getTime();
+      var missionStartTime6 = new Date("June 5, 2020 20:00:00").getTime();
+
+      function countdown(finish_date, timer) {
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get today's date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = finish_date - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          if (days < 10) days = "0" + days;
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          if (hours < 10) hours = "0" + hours;
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          if (minutes < 10) minutes = "0" + minutes;
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          if (seconds < 10) seconds = "0" + seconds;
+
+          // Display the result in the element with id="demo"
+          timer.innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+          if (days == '00' && hours == '00' && minutes == '00') timer.style.color = "#A40000";
+          else if (days == '00') timer.style.color = "white";
+
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            location.reload()
+          }
+        }, 1000);
+      }
+
+      var timer1 = document.getElementById("countdown-timer-1");
+      var timer2 = document.getElementById("countdown-timer-2");
+      var timer3 = document.getElementById("countdown-timer-3");
+      var timer4 = document.getElementById("countdown-timer-4");
+      var timer5 = document.getElementById("countdown-timer-5");
+      var timer6 = document.getElementById("countdown-timer-6");
+      var now = new Date().getTime();
+      
+      if (now < missionStartTime1)
+        countdown(missionStartTime1, timer1);
+      if (now < missionStartTime2)
+        countdown(missionStartTime2, timer2);
+      if (now < missionStartTime3)
+        countdown(missionStartTime3, timer3);
+      if (now < missionStartTime4)
+        countdown(missionStartTime4, timer4);
+      if (now < missionStartTime5)
+        countdown(missionStartTime5, timer5);
+      if (now < missionStartTime6)
+        countdown(missionStartTime6, timer6);
+    </script>
 {% endblock %}
+

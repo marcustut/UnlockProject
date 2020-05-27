@@ -24,4 +24,9 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('register/', login_views.register, name='register'),
     path('infoboard/', infoboard_views.infoboard, name='infoboard'),
+    path('ranking/', infoboard_views.ranking, name='ranking'),
+    path('api/', include('api.urls')),
 ]
+
+handler404 = 'home.views.error_404_view'
+handler500 = 'home.views.error_500_view'
